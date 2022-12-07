@@ -11,8 +11,8 @@ GameObject:
   - component: {fileID: 2830053958737063155}
   - component: {fileID: 7884306068444584676}
   - component: {fileID: 7900052582229082711}
-  - component: {fileID: 877709593183496553}
   - component: {fileID: -829644606244683020}
+  - component: {fileID: 2474848398728637152}
   m_Layer: 0
   m_Name: ProjectileRainBullet
   m_TagString: Untagged
@@ -108,7 +108,19 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
---- !u!61 &877709593183496553
+--- !u!114 &-829644606244683020
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5097029133930025161}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4499c25a14ae4174c8721bad2601fd6b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!61 &2474848398728637152
 BoxCollider2D:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -134,15 +146,3 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 1, y: 1}
   m_EdgeRadius: 0
---- !u!114 &-829644606244683020
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5097029133930025161}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4499c25a14ae4174c8721bad2601fd6b, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
