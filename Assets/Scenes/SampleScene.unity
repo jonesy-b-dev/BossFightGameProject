@@ -354,6 +354,14 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 410691976382639407, guid: 8881713cf10017549bd76c64bb8cb141, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 8.28
+      objectReference: {fileID: 0}
+    - target: {fileID: 410691976382639407, guid: 8881713cf10017549bd76c64bb8cb141, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -0.14
+      objectReference: {fileID: 0}
     - target: {fileID: 1615628299231142918, guid: 8881713cf10017549bd76c64bb8cb141, type: 3}
       propertyPath: m_Name
       value: Boss
@@ -364,11 +372,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3637611617676417751, guid: 8881713cf10017549bd76c64bb8cb141, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -11.86
+      value: -13.108803
       objectReference: {fileID: 0}
     - target: {fileID: 3637611617676417751, guid: 8881713cf10017549bd76c64bb8cb141, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 4.57
+      value: 2.9009743
       objectReference: {fileID: 0}
     - target: {fileID: 3637611617676417751, guid: 8881713cf10017549bd76c64bb8cb141, type: 3}
       propertyPath: m_LocalPosition.z
@@ -490,8 +498,8 @@ MonoBehaviour:
     m_Bits: 1
   m_VolumeTrigger: {fileID: 0}
   m_VolumeFrameworkUpdateModeOption: 2
-  m_RenderPostProcessing: 0
-  m_Antialiasing: 0
+  m_RenderPostProcessing: 1
+  m_Antialiasing: 2
   m_AntialiasingQuality: 2
   m_StopNaN: 0
   m_Dithering: 0
@@ -550,7 +558,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 519420028}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
