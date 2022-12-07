@@ -47,21 +47,26 @@ public class BossMovement : MonoBehaviour
     {
         if (collision.gameObject.layer == 3)
         {
-            while (transform.position.y < 5 && canResetBodySlam == true)
-            {
-                moveBossUp();
-    
-                if (transform.position.y < 5)
-                {
-                    canResetBodySlam = false;
-                }
-            }
+            Debug.Log("hitground");
+            Debug.Log(transform.position.y);
+            
+            rb.gravityScale = 0;
+            moveBossUp();
         }
     }
 
     private void moveBossUp()
     {
-        rb.velocity = new Vector2(0, 1);
+
+        if (transform.position.y < 5)
+        {
+            rb.velocity = new Vector2(0, 5);
+            moveBossUp();
+        }
+        else
+        {
+            rb.velocity = new Vector2(0, 0);
+        }
     }
 
     IEnumerator StartAttackPhase()
