@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEditor.SearchService;
 using UnityEngine;
-using System.Threading.Tasks;
 
 public class BossMovement : MonoBehaviour
 {
@@ -38,41 +37,35 @@ public class BossMovement : MonoBehaviour
         }
     }
 
-        bool canDoNextAttack = true;
     IEnumerator StartAttackPhase()
     {
         //seems like 2 and 4 is barely choosen so that will be more powerfull attacks
-
         while (bossHP >= 0)
         {
-            if (canDoNextAttack)
+            int nextAttack = Random.Range(0, 5);
+            nextAttack = 4;
+            switch (nextAttack)
             {
-                int nextAttack = Random.Range(0, 5);
-                nextAttack = 4;
-                canDoNextAttack = false;
-                switch (nextAttack)
-                {
-                    case 1:
-                        SweepAttack();
-
-                        break;
-                    case 2:
-                        BodySlam();
-                        break;
-                    case 3:
-                        ProjectileAttack();
-                        break;
-                    case 4:
-                        for (int i = 0; i < 50; i++)
-                        {
-                            Invoke("ProjectileRainAttack", 1f);
-                        }                       
-                        break;
-                    default:
-                        break;
-                }
-            } 
-            yield return new WaitForSeconds(Random.Range(0, 4));
+                case 1:
+                    SweepAttack();
+                    break;
+                case 2:
+                    BodySlam();
+                    break;
+                case 3:
+                    ProjectileAttack();
+                    break;
+                case 4:
+                    for (int i = 0; i < 50; i++)
+                    {
+                        ProjectileRainAttack();
+                    }
+                    break;
+                default:
+                    break;
+            }
+                
+            yield return new WaitForSeconds(Random.Range(1, 4));
         }
     }
 
@@ -93,13 +86,11 @@ public class BossMovement : MonoBehaviour
         Debug.Log("3");
     }
 
+
     private void ProjectileRainAttack()
     {
-
-
         Instantiate(projectileRainProjectile);
-       
-        Debug.Log("4");
 
+        Debug.Log("4");
     }
 }   

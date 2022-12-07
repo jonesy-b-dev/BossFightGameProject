@@ -42,6 +42,7 @@ GameObject:
   m_Component:
   - component: {fileID: 410691976382639407}
   - component: {fileID: 5370658499053796291}
+  - component: {fileID: 6938430638576917416}
   m_Layer: 0
   m_Name: Square
   m_TagString: Untagged
@@ -116,3 +117,19 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &6938430638576917416
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2876445321747681246}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3f613426f7b827e46be9cb9de065f976, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  bossMovementSpeed: 5
+  chaseActivated: 0
+  bossHP: 1000
+  projectileRainProjectile: {fileID: 5097029133930025161, guid: e1020c06f43acfb4b8da275914aa734e, type: 3}

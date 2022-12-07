@@ -402,7 +402,8 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 6938430638576917416, guid: 8881713cf10017549bd76c64bb8cb141, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 8881713cf10017549bd76c64bb8cb141, type: 3}
 --- !u!1 &390849377
 GameObject:
@@ -1154,3 +1155,4 @@ MonoBehaviour:
   bossMovementSpeed: 5
   chaseActivated: 1
   bossHP: 1000
+  projectileRainProjectile: {fileID: 5097029133930025161, guid: e1020c06f43acfb4b8da275914aa734e, type: 3}
