@@ -10,6 +10,9 @@ public class PlayerController : MonoBehaviour
     // I learned this in a Youtube tutorial so correct me if I'm wrong LMAO
 
     [SerializeField] private int hp;
+    public int healItemAmount;
+    [SerializeField] private int healAmount;
+
     #region Movement Variables
     private float horizontal;
     private int facing = 1;
@@ -113,9 +116,10 @@ public class PlayerController : MonoBehaviour
                 case 1: meleeCheck.position = new Vector2(meleeCheck.parent.position.x + 1.5f, meleeCheck.position.y); break;
                 case -1: meleeCheck.position = new Vector2(meleeCheck.parent.position.x - 1.5f, meleeCheck.position.y); break;
             }
-            // Melee Attack
+            // Functions
             if (Input.GetButtonDown("Fire1") && meleeCooldownTimer <= 0) Melee();
             if (Input.GetButtonDown("Fire2") && rangedCooldownTimer <= 0) Ranged();
+            if (Input.GetButtonDown("Fire3") && healItemAmount > 0) Heal(healAmount);
 
             // Cooldown Countdowns
             if (meleeCooldownTimer > 0) meleeCooldownTimer -= Time.deltaTime;
@@ -185,11 +189,18 @@ public class PlayerController : MonoBehaviour
             // INSERT ATTACK ANIMATION
 
             Collider2D enemy = Physics2D.OverlapBox(meleeCheck.position, meleeCheck.localScale, 0, enemyLayer);
+            Gizmos.color = Color.red;
 
             // Change to: enemy.GetComponent<BossScript>().Damage();
             if (enemy != null) Debug.Log("You hit " + enemy.name);
 
             meleeCooldownTimer = meleeCooldown;
+        }
+        void OnDrawGizmos()
+        {
+            // Draw a yellow cube at the meleeCheck's position
+            Gizmos.color = Color.yellow;
+            Gizmos.DrawCube(meleeCheck.position, meleeCheck.localScale);
         }
         void Ranged()
         {
@@ -200,6 +211,12 @@ public class PlayerController : MonoBehaviour
 
             rangedCooldownTimer = rangedCooldown;
         }
+        void Heal(int amount)
+        {
+            // INSERT HEAL ANIMATION. PROBABLY JUST A FLASHING GREEN OVERLAY BUT WE'LL FIGURE IT OUT LATER
+            hp += amount;
+            healItemAmount--;
+        }
 
         // IMPORTANT
         // Can be executed through any code, subtracts d amount of damage from the player. Death function will be added later.
@@ -208,8 +225,11 @@ public class PlayerController : MonoBehaviour
             // INSERT DAMAGE ANIMATION
 
             hp -= d;
+            if (hp <= 0) Die();
+        }
+        void Die()
+        {
 
-            // if (hp <= 0) Die()
         }
 
         // IMPORTANT
