@@ -6,17 +6,14 @@ using UnityEngine;
 
 public class BossMovement : MonoBehaviour
 {
+    [SerializeField] private Rigidbody2D rb;
     [SerializeField] private int bossMovementSpeed = 5;
     [SerializeField] private bool chaseActivated = true;
     [SerializeField] private int bossHP = 1000;
     [SerializeField] private GameObject projectileRainProjectile;
 
     private bool inAttckstage = false;
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
+    private bool canResetBodySlam = false;
 
     // Update is called once per frame
     void Update()
@@ -24,7 +21,7 @@ public class BossMovement : MonoBehaviour
         if (chaseActivated)
         {
             //Chasing state
-            transform.Translate(Vector2.right * bossMovementSpeed * Time.deltaTime);
+            rb.velocity = new Vector2(1 * bossMovementSpeed, 0);
         }
         else
         {
@@ -37,13 +34,43 @@ public class BossMovement : MonoBehaviour
         }
     }
 
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.tag == "EndOfChaseTrigger")
+        {
+            Debug.Log("chase deactivated");
+            chaseActivated = false;
+        }
+    }
+
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        if (collision.gameObject.layer == 3)
+        {
+            while (transform.position.y < 5 && canResetBodySlam == true)
+            {
+                moveBossUp();
+    
+                if (transform.position.y < 5)
+                {
+                    canResetBodySlam = false;
+                }
+            }
+        }
+    }
+
+    private void moveBossUp()
+    {
+        rb.velocity = new Vector2(0, 1);
+    }
+
     IEnumerator StartAttackPhase()
     {
         //seems like 2 and 4 is barely choosen so that will be more powerfull attacks
         while (bossHP >= 0)
         {
             int nextAttack = Random.Range(0, 5);
-            nextAttack = 4;
+            nextAttack = 2;
             switch (nextAttack)
             {
                 case 1:
@@ -65,7 +92,7 @@ public class BossMovement : MonoBehaviour
                     break;
             }
                 
-            yield return new WaitForSeconds(Random.Range(1, 4));
+            yield return new WaitForSeconds(Random.Range(4, 8));
         }
     }
 
@@ -78,6 +105,13 @@ public class BossMovement : MonoBehaviour
 
     private void BodySlam()
     {
+        rb.velocity = new Vector2(0, 0);
+        rb.AddForce(new Vector2(0, 10), ForceMode2D.Impulse);
+        rb.gravityScale = 1.5f;
+
+        canResetBodySlam = true;
+
+
         Debug.Log("2");
     }
 
