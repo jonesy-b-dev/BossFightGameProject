@@ -58,15 +58,6 @@ public class BossMovement : MonoBehaviour
     private void moveBossUp()
     {
 
-        if (transform.position.y < 5)
-        {
-            rb.velocity = new Vector2(0, 5);
-            moveBossUp();
-        }
-        else
-        {
-            rb.velocity = new Vector2(0, 0);
-        }
     }
 
     IEnumerator StartAttackPhase()
