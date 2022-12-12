@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 3090344304146228350}
   - component: {fileID: 7338721813383541394}
   - component: {fileID: 5699947510894301945}
+  - component: {fileID: 1446872457121693202}
   - component: {fileID: 3409235811940310646}
   - component: {fileID: 3409235811940310635}
   m_Layer: 0
@@ -104,6 +105,20 @@ MonoBehaviour:
   chaseActivated: 1
   bossHP: 1000
   projectileRainProjectile: {fileID: 5097029133930025161, guid: e1020c06f43acfb4b8da275914aa734e, type: 3}
+--- !u!114 &1446872457121693202
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 629138560358844047}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2fc373ec871a0a846a53b3cbfad31da0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  routes:
+  - {fileID: 0}
 --- !u!50 &3409235811940310646
 Rigidbody2D:
   serializedVersion: 4
