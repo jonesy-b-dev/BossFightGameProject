@@ -17,8 +17,6 @@ public class BossMovement : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        Debug.Log(chaseActivated);
-
         if (!chaseActivated)
         {
             //Attack state
