@@ -9,7 +9,10 @@ public class BossMovement : MonoBehaviour
     [SerializeField] private int bossMovementSpeed = 5;
     public bool chaseActivated = true;
     [SerializeField] private int bossHP = 1000;
+
+    //Attack assets
     [SerializeField] private GameObject projectileRainProjectile;
+    [SerializeField] private GameObject projectileAttackProjectile;
 
     private bool inAttckstage = false;
     private bool canResetBodySlam;
@@ -60,7 +63,7 @@ public class BossMovement : MonoBehaviour
         while (bossHP >= 0)
         {
             int nextAttack = Random.Range(0, 5);
-            nextAttack = 4;
+            nextAttack = 3;
             switch (nextAttack)
             {
                 case 1:
@@ -107,7 +110,7 @@ public class BossMovement : MonoBehaviour
 
     private void ProjectileAttack()
     {
-        Debug.Log("3");
+        Instantiate(projectileAttackProjectile);
     }
 
 
