@@ -1,7 +1,6 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
-using UnityEditor.ShaderGraph;
 using UnityEngine;
 using UnityEngine.Rendering;
 
@@ -9,17 +8,16 @@ public class RouteFollow : MonoBehaviour
 {
     [SerializeField]
     private Transform[] routes;
-
+    [SerializeField]
+    private BoxCollider2D collider;
+    [SerializeField]
     private int routeToGo;
-
     private float tParam;
-
     private Vector2 bossPosition;
-
     private float speed;
-
     private bool coroutineAllowed;
 
+    
     // Use this for initialization
     void Start()
     {
@@ -27,6 +25,9 @@ public class RouteFollow : MonoBehaviour
         tParam = 0f;
         speed = 0.5f;
         coroutineAllowed = true;
+        collider.enabled = false;
+        
+
     }
 
 
@@ -62,6 +63,11 @@ public class RouteFollow : MonoBehaviour
         tParam = 0f;
 
         routeToGo += 1;
+        if (routeToGo > routes.Length)
+        {
+            GetComponent<BossMovement>().chaseActivated = false;
+            routeToGo = 0;
+        }
 
         coroutineAllowed = true;
     }

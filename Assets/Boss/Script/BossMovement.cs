@@ -1,29 +1,25 @@
 using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
-using UnityEditor.SearchService;
 using UnityEngine;
 
 public class BossMovement : MonoBehaviour
 {
     [SerializeField] private Rigidbody2D rb;
     [SerializeField] private int bossMovementSpeed = 5;
-    [SerializeField] private bool chaseActivated = true;
+    public bool chaseActivated = true;
     [SerializeField] private int bossHP = 1000;
     [SerializeField] private GameObject projectileRainProjectile;
 
     private bool inAttckstage = false;
-    private bool canResetBodySlam = false;
+    private bool canResetBodySlam;
 
     // Update is called once per frame
     void Update()
     {
-        if (chaseActivated)
-        {
-            //Chasing state
-            rb.velocity = new Vector2(1 * bossMovementSpeed, 0);
-        }
-        else
+        Debug.Log(chaseActivated);
+
+        if (!chaseActivated)
         {
             //Attack state
             if (!inAttckstage)
@@ -66,7 +62,7 @@ public class BossMovement : MonoBehaviour
         while (bossHP >= 0)
         {
             int nextAttack = Random.Range(0, 5);
-            nextAttack = 2;
+            nextAttack = 4;
             switch (nextAttack)
             {
                 case 1:
