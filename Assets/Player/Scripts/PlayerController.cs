@@ -99,6 +99,7 @@ public class PlayerController : MonoBehaviour
                 wallJumping = true;
                 Invoke("SetWallJumpingToFalse", wallJumpTime);
                 // See region Horizontal Movement for more wallJump stuff. Don't ask why it's there.
+                // See region Wall Jump in FixedUpdate for more
             }
 
             // Halves your vertical momentum when you let go of the button to make for more precise jumps.
