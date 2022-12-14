@@ -13,9 +13,10 @@ public class BossMovement : MonoBehaviour
     //Attack assets
     [SerializeField] private GameObject projectileRainProjectile;
     [SerializeField] private GameObject projectileAttackProjectile;
+    [SerializeField] private GameObject player;
+    Vector2 playerPos;
 
     private bool inAttckstage = false;
-    private bool canResetBodySlam;
 
     // Update is called once per frame
     void Update()
@@ -27,16 +28,8 @@ public class BossMovement : MonoBehaviour
             {
                 inAttckstage = true;
                 StartCoroutine(StartAttackPhase());
-            }
-        }
-    }
 
-    private void OnTriggerEnter2D(Collider2D collision)
-    {
-        if (collision.tag == "EndOfChaseTrigger")
-        {
-            Debug.Log("chase deactivated");
-            chaseActivated = false;
+            }
         }
     }
 
@@ -102,15 +95,12 @@ public class BossMovement : MonoBehaviour
         rb.AddForce(new Vector2(0, 10), ForceMode2D.Impulse);
         rb.gravityScale = 1.5f;
 
-        canResetBodySlam = true;
-
-
         Debug.Log("2");
     }
 
     private void ProjectileAttack()
     {
-        Instantiate(projectileAttackProjectile);
+        Instantiate(projectileAttackProjectile, transform.position, Quaternion.identity);
     }
 
 

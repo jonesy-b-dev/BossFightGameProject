@@ -10,7 +10,8 @@ GameObject:
   m_Component:
   - component: {fileID: 2889552262238459234}
   - component: {fileID: 740512706967385119}
-  - component: {fileID: 6055125022691910278}
+  - component: {fileID: 310839911953308173}
+  - component: {fileID: -4266080765902486411}
   m_Layer: 0
   m_Name: ProjectileAttackbBullet
   m_TagString: Untagged
@@ -85,7 +86,7 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!114 &6055125022691910278
+--- !u!114 &310839911953308173
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -94,6 +95,27 @@ MonoBehaviour:
   m_GameObject: {fileID: 3550427685330094926}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8f4bad74e1b7fea46a0f7236b92ec0ee, type: 3}
+  m_Script: {fileID: 11500000, guid: b7430cbe0179b4e4aaf65a4dcde6e7c5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!50 &-4266080765902486411
+Rigidbody2D:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3550427685330094926}
+  m_BodyType: 0
+  m_Simulated: 1
+  m_UseFullKinematicContacts: 0
+  m_UseAutoMass: 0
+  m_Mass: 1
+  m_LinearDrag: 0
+  m_AngularDrag: 0.05
+  m_GravityScale: 0
+  m_Material: {fileID: 0}
+  m_Interpolate: 0
+  m_SleepingMode: 1
+  m_CollisionDetection: 1
+  m_Constraints: 0

@@ -900,6 +900,10 @@ PrefabInstance:
       value: Boss
       objectReference: {fileID: 0}
     - target: {fileID: 5699947510894301945, guid: 0e33cae0a1e8d6046a41b4daf9f8ed3a, type: 3}
+      propertyPath: player
+      value: 
+      objectReference: {fileID: 1208800929}
+    - target: {fileID: 5699947510894301945, guid: 0e33cae0a1e8d6046a41b4daf9f8ed3a, type: 3}
       propertyPath: projectileAttackProjectile
       value: 
       objectReference: {fileID: 3550427685330094926, guid: e99ecc70cf23c5a47a862b7f24b6156f, type: 3}
