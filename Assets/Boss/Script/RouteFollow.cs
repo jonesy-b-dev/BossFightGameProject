@@ -26,8 +26,6 @@ public class RouteFollow : MonoBehaviour
         speed = 0.5f;
         coroutineAllowed = true;
         collider.enabled = false;
-        
-
     }
 
 
@@ -64,6 +62,7 @@ public class RouteFollow : MonoBehaviour
         routeToGo += 1;
         if (routeToGo > routes.Length - 1)
         {
+            collider.enabled = true;
             GetComponent<BossMovement>().chaseActivated = false;
         }
 

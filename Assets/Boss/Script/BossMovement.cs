@@ -9,12 +9,15 @@ public class BossMovement : MonoBehaviour
     [SerializeField] private int bossMovementSpeed = 5;
     public bool chaseActivated = true;
     [SerializeField] private int bossHP = 1000;
+    int previousAttack = 1;
 
     //Attack assets
+    [Space]
+    [Space]
     [SerializeField] private GameObject projectileRainProjectile;
     [SerializeField] private GameObject projectileAttackProjectile;
     [SerializeField] private GameObject player;
-    Vector2 playerPos;
+    [SerializeField] private BoxCollider2D sweepAttackCollider;
 
     private bool inAttckstage = false;
 
@@ -33,60 +36,53 @@ public class BossMovement : MonoBehaviour
         }
     }
 
-    private void OnCollisionEnter2D(Collision2D collision)
-    {
-        if (collision.gameObject.layer == 3)
-        {
-            Debug.Log("hitground");
-            Debug.Log(transform.position.y);
-            
-            rb.gravityScale = 0;
-            moveBossUp();
-        }
-    }
-
-    private void moveBossUp()
-    {
-
-    }
-
     IEnumerator StartAttackPhase()
     {
         //seems like 2 and 4 is barely choosen so that will be more powerfull attacks
         while (bossHP >= 0)
         {
+            sweepAttackCollider.enabled = false;
             int nextAttack = Random.Range(0, 5);
-            nextAttack = 3;
-            switch (nextAttack)
+            if (nextAttack != previousAttack)
             {
-                case 1:
-                    SweepAttack();
-                    break;
-                case 2:
-                    BodySlam();
-                    break;
-                case 3:
-                    ProjectileAttack();
-                    break;
-                case 4:
-                    for (int i = 0; i < 50; i++)
-                    {
+                previousAttack = nextAttack;
+                switch (nextAttack)
+                {
+                    case 1:
+                        Debug.Log("1");
+                        StartCoroutine(SweepAttack());
+                        break;
+                    case 2:
+                        Debug.Log("2");
+                        BodySlam();
+                        break;
+                    case 3:
+                        Debug.Log("3");
+                        ProjectileAttack();
+                        break;
+                    case 4:
+                        Debug.Log("4");
                         ProjectileRainAttack();
-                    }
-                    break;
-                default:
-                    break;
+                        break;
+                    default:
+                        break;
+                }
             }
-                
-            yield return new WaitForSeconds(Random.Range(4, 8));
+            else
+            {
+                yield return new WaitForSeconds(0);
+            }
+            yield return new WaitForSeconds(Random.Range(1, 2));
         }
     }
 
 
-    //
-    private void SweepAttack()
+    //Attacks
+    private IEnumerator SweepAttack()
     {
-        Debug.Log("1");
+        sweepAttackCollider.enabled = true;
+        Debug.Log("Sweep Attack");
+        yield return new WaitForSeconds(1);
     }
 
     private void BodySlam()
@@ -94,8 +90,6 @@ public class BossMovement : MonoBehaviour
         rb.velocity = new Vector2(0, 0);
         rb.AddForce(new Vector2(0, 10), ForceMode2D.Impulse);
         rb.gravityScale = 1.5f;
-
-        Debug.Log("2");
     }
 
     private void ProjectileAttack()
@@ -103,11 +97,12 @@ public class BossMovement : MonoBehaviour
         Instantiate(projectileAttackProjectile, transform.position, Quaternion.identity);
     }
 
-
     private void ProjectileRainAttack()
     {
-        Instantiate(projectileRainProjectile);
+        for (int i = 0; i < 50; i++)
+        {
+            Instantiate(projectileRainProjectile);
 
-        Debug.Log("4");
+        }
     }
 }   
