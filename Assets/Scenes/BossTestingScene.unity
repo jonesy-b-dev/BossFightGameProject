@@ -464,7 +464,7 @@ BoxCollider2D:
   m_Enabled: 0
   m_Density: 1
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: -0.4}
@@ -881,6 +881,10 @@ PrefabInstance:
       propertyPath: player
       value: 
       objectReference: {fileID: 1208800929}
+    - target: {fileID: 5699947510894301945, guid: 0e33cae0a1e8d6046a41b4daf9f8ed3a, type: 3}
+      propertyPath: sweepAttackCollider
+      value: 
+      objectReference: {fileID: 472921897}
     - target: {fileID: 5699947510894301945, guid: 0e33cae0a1e8d6046a41b4daf9f8ed3a, type: 3}
       propertyPath: projectileAttackProjectile
       value: 

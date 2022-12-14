@@ -6,17 +6,13 @@ using UnityEngine.Rendering;
 
 public class RouteFollow : MonoBehaviour
 {
-    [SerializeField]
-    private Transform[] routes;
-    [SerializeField]
-    private BoxCollider2D collider;
-    [SerializeField]
-    private int routeToGo;
+    [SerializeField] private Transform[] routes;
+    [SerializeField] private BoxCollider2D collider;
+    [SerializeField] private int routeToGo;
     private float tParam;
     private Vector2 bossPosition;
     private float speed;
     private bool coroutineAllowed;
-
     
     // Use this for initialization
     void Start()

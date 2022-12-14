@@ -4,11 +4,12 @@ using UnityEngine;
 
 public class ProjectileAttackBullet : MonoBehaviour
 {
-    float moveSpeed = 7f;
+    readonly float moveSpeed = 7f;
     
     Rigidbody2D rb;
 
     GameObject target;
+    PlayerController player;
     Vector2 moveDirection;
 
     private void Start()
@@ -16,9 +17,16 @@ public class ProjectileAttackBullet : MonoBehaviour
         rb = GetComponent<Rigidbody2D>();
         target = GameObject.FindGameObjectWithTag("Player");
 
-        Debug.Log(target.transform.position.x);
-
         moveDirection = (target.transform.position - transform.position).normalized * moveSpeed;
         rb.velocity = new Vector2(moveDirection.x, moveDirection.y);
+    }
+
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        if (collision.gameObject.tag == "Player")
+        {
+            Debug.Log("Hit player");
+            player.Damage(1);
+        }
     }
 }

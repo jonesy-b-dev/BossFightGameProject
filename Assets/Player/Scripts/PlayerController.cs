@@ -225,6 +225,7 @@ public class PlayerController : MonoBehaviour
             // INSERT DAMAGE ANIMATION
 
             hp -= d;
+            Debug.Log(hp);
             if (hp <= 0) Die();
         }
         void Die()

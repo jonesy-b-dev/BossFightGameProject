@@ -7,8 +7,8 @@ public class BossMovement : MonoBehaviour
 {
     [SerializeField] private Rigidbody2D rb;
     [SerializeField] private int bossMovementSpeed = 5;
-    public bool chaseActivated = true;
     [SerializeField] private int bossHP = 1000;
+    public bool chaseActivated = true;
     int previousAttack = 1;
 
     //Attack assets
@@ -21,7 +21,6 @@ public class BossMovement : MonoBehaviour
 
     private bool inAttckstage = false;
 
-    // Update is called once per frame
     void Update()
     {
         if (!chaseActivated)
@@ -38,7 +37,6 @@ public class BossMovement : MonoBehaviour
 
     IEnumerator StartAttackPhase()
     {
-        //seems like 2 and 4 is barely choosen so that will be more powerfull attacks
         while (bossHP >= 0)
         {
             sweepAttackCollider.enabled = false;
@@ -49,19 +47,19 @@ public class BossMovement : MonoBehaviour
                 switch (nextAttack)
                 {
                     case 1:
-                        Debug.Log("1");
+                        //Debug.Log("1");
                         StartCoroutine(SweepAttack());
                         break;
                     case 2:
-                        Debug.Log("2");
+                        //Debug.Log("2");
                         BodySlam();
                         break;
                     case 3:
-                        Debug.Log("3");
+                        //Debug.Log("3");
                         ProjectileAttack();
                         break;
                     case 4:
-                        Debug.Log("4");
+                        //Debug.Log("4");
                         ProjectileRainAttack();
                         break;
                     default:
@@ -76,12 +74,10 @@ public class BossMovement : MonoBehaviour
         }
     }
 
-
     //Attacks
     private IEnumerator SweepAttack()
     {
         sweepAttackCollider.enabled = true;
-        Debug.Log("Sweep Attack");
         yield return new WaitForSeconds(1);
     }
 
@@ -102,7 +98,6 @@ public class BossMovement : MonoBehaviour
         for (int i = 0; i < 50; i++)
         {
             Instantiate(projectileRainProjectile);
-
         }
     }
 }   
