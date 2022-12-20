@@ -13,6 +13,9 @@ public class PlayerController : MonoBehaviour
     public int healItemAmount;
     [SerializeField] private int healAmount;
 
+    [SerializeField] private GameObject pauseMenu;
+    private bool isPaused;
+
     #region Movement Variables
     private float horizontal;
     private int facing = 1;
@@ -34,6 +37,7 @@ public class PlayerController : MonoBehaviour
 
     [Space(10)]
     private bool wallJumping;
+    private int wallJumpDirection;
     [SerializeField] private float xWallForce;
     [SerializeField] private float yWallForce;
     [SerializeField] private float wallJumpTime;
@@ -96,6 +100,9 @@ public class PlayerController : MonoBehaviour
             // Wall Jump mechanic.
             else if (Input.GetButtonDown("Jump") && wallSliding)
             {
+                if (TouchingL()) wallJumpDirection = 1;
+                if (TouchingR()) wallJumpDirection = -1;
+
                 wallJumping = true;
                 Invoke("SetWallJumpingToFalse", wallJumpTime);
                 // See region Wall Jump in FixedUpdate for more
@@ -124,6 +131,24 @@ public class PlayerController : MonoBehaviour
             // Cooldown Countdowns
             if (meleeCooldownTimer > 0) meleeCooldownTimer -= Time.deltaTime;
             if (rangedCooldownTimer > 0) rangedCooldownTimer -= Time.deltaTime;
+        #endregion
+
+        #region Pausing
+        if (Input.GetKeyDown(KeyCode.Escape))
+        {
+            if (!isPaused)
+            {
+                pauseMenu.SetActive(true); 
+                isPaused = true;
+                Debug.Log("Paused");
+            }
+            else if (isPaused)
+            {
+                pauseMenu.SetActive(false); 
+                isPaused = false;
+                Debug.Log("Unpaused");
+            }
+        }
         #endregion
     }
 
@@ -159,7 +184,12 @@ public class PlayerController : MonoBehaviour
             }
 
             // I wanted to put this in FixedUpdate in case of deltaTime shenanigans, refers back to Line 60-64.
-            if (wallJumping) player.velocity = new Vector2(xWallForce * -facing, yWallForce);
+            if (wallJumping)
+            {
+                player.velocity = new Vector2(xWallForce * wallJumpDirection, yWallForce);
+                if (wallJumpDirection == 1 && TouchingR()) wallJumping = false;
+                if (wallJumpDirection == -1 && TouchingL()) wallJumping = false;
+        }
         #endregion
 
         // Knockback
