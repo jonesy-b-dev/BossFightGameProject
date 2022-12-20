@@ -104,7 +104,7 @@ public class PlayerController : MonoBehaviour
                 if (TouchingR()) wallJumpDirection = -1;
 
                 wallJumping = true;
-                Invoke("SetWallJumpingToFalse", wallJumpTime);
+                Invoke(nameof(SetWallJumpingToFalse), wallJumpTime);
                 // See region Wall Jump in FixedUpdate for more
             }
 
@@ -270,7 +270,7 @@ public class PlayerController : MonoBehaviour
             kbActive = true;
             kbForce = new Vector2(powerX, powerY);
 
-            Invoke("SetKBActiveToFalse", time);
+            Invoke(nameof(SetKBActiveToFalse), time);
         }
     #endregion
 
