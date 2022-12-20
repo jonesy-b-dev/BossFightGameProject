@@ -16,7 +16,6 @@ public class BossMovement : MonoBehaviour
     [Space]
     [SerializeField] private GameObject projectileRainProjectile;
     [SerializeField] private GameObject projectileAttackProjectile;
-    [SerializeField] private GameObject player;
     [SerializeField] private BoxCollider2D sweepAttackCollider;
 
     private bool inAttckstage = false;
@@ -30,7 +29,6 @@ public class BossMovement : MonoBehaviour
             {
                 inAttckstage = true;
                 StartCoroutine(StartAttackPhase());
-
             }
         }
     }
@@ -47,19 +45,15 @@ public class BossMovement : MonoBehaviour
                 switch (nextAttack)
                 {
                     case 1:
-                        //Debug.Log("1");
                         StartCoroutine(SweepAttack());
                         break;
                     case 2:
-                        //Debug.Log("2");
                         BodySlam();
                         break;
                     case 3:
-                        //Debug.Log("3");
                         ProjectileAttack();
                         break;
                     case 4:
-                        //Debug.Log("4");
                         ProjectileRainAttack();
                         break;
                     default:

@@ -4,8 +4,8 @@ using UnityEngine;
 
 public class Arrow : MonoBehaviour
 {
-    private float speed = 30f;
-    private float lifeTime = 3f;
+    private readonly float speed = 30f;
+    private readonly float lifeTime = 3f;
 
     [SerializeField] private LayerMask enemyLayer;
     [SerializeField] private LayerMask groundLayer;
@@ -19,7 +19,7 @@ public class Arrow : MonoBehaviour
     // Update is called once per frame
     void FixedUpdate()
     {
-        transform.Translate(transform.right * dirX * speed * Time.deltaTime);
+        transform.Translate(dirX * speed * Time.deltaTime * transform.right);
 
         Collider2D enemy = Physics2D.OverlapBox(transform.position, transform.localScale, 0, enemyLayer);
 
