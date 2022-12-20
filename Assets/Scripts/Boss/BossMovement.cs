@@ -7,7 +7,7 @@ public class BossMovement : MonoBehaviour
 {
     [SerializeField] private Rigidbody2D rb;
     [SerializeField] private int bossMovementSpeed = 5;
-    [SerializeField] private int bossHP = 1000;
+    public int bossHP = 1000;
     public bool chaseActivated = true;
     int previousAttack = 1;
 

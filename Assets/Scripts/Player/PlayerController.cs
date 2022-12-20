@@ -9,12 +9,12 @@ public class PlayerController : MonoBehaviour
 
     // I learned this in a Youtube tutorial so correct me if I'm wrong LMAO
 
-    [SerializeField] private int hp;
+    public int hp;
     public int healItemAmount;
     [SerializeField] private int healAmount;
 
-    [SerializeField] private GameObject pauseMenu;
-    private bool isPaused;
+    public GameObject pauseMenu;
+    public bool isPaused;
 
     #region Movement Variables
     private float horizontal;
@@ -140,12 +140,16 @@ public class PlayerController : MonoBehaviour
             {
                 pauseMenu.SetActive(true); 
                 isPaused = true;
+
+                Time.timeScale = 0;
                 Debug.Log("Paused");
             }
             else if (isPaused)
             {
-                pauseMenu.SetActive(false); 
+                pauseMenu.SetActive(false);
                 isPaused = false;
+
+                Time.timeScale = 1;
                 Debug.Log("Unpaused");
             }
         }
@@ -241,6 +245,19 @@ public class PlayerController : MonoBehaviour
 
             rangedCooldownTimer = rangedCooldown;
         }
+
+        // IMPORTANT
+        // Can be executed through any code, gives the player knockback by X/Y amount in dir direction for time seconds.
+        public void Knockback(float powerX, float powerY, float time)
+        {
+            kbActive = true;
+            kbForce = new Vector2(powerX, powerY);
+
+            Invoke("SetKBActiveToFalse", time);
+        }
+    #endregion
+
+    #region HP Methods
         void Heal(int amount)
         {
             // INSERT HEAL ANIMATION. PROBABLY JUST A FLASHING GREEN OVERLAY BUT WE'LL FIGURE IT OUT LATER
@@ -262,16 +279,6 @@ public class PlayerController : MonoBehaviour
         {
 
         }
-
-        // IMPORTANT
-        // Can be executed through any code, gives the player knockback by X/Y amount in dir direction for time seconds.
-        public void Knockback(float powerX, float powerY, float time)
-        {
-            kbActive = true;
-            kbForce = new Vector2(powerX, powerY);
-
-            Invoke("SetKBActiveToFalse", time);
-        }
     #endregion
 
     void SetWallJumpingToFalse()
@@ -282,5 +289,4 @@ public class PlayerController : MonoBehaviour
     {
         kbActive = false;
     }
-
 }

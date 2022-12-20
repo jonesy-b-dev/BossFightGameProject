@@ -8,6 +8,8 @@ public class MenuManager : MonoBehaviour
     private int currentSelection = 0;
     private int maxSelection;
 
+    public PlayerController pc;
+
     [SerializeField]
     private Transform selectionImg;
 
@@ -61,10 +63,15 @@ public class MenuManager : MonoBehaviour
                     {
                         case 0:
                             {
-                                
+                                pc.pauseMenu.SetActive(false);
+                                pc.isPaused = false;
+
+                                Time.timeScale = 1;
+                                Debug.Log("Unpaused");
                             } break;
                         case 1:
                             {
+                                Time.timeScale = 1;
                                 SceneManager.LoadScene("MainMenu");
                             } break;
                     }

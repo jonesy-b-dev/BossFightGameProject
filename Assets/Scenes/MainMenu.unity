@@ -156,6 +156,7 @@ MonoBehaviour:
   button:
   - {fileID: 531590360}
   - {fileID: 738913540}
+  menuType: main
 --- !u!4 &176144206
 Transform:
   m_ObjectHideFlags: 0
