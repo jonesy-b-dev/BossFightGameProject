@@ -61,11 +61,11 @@ public class MenuManager : MonoBehaviour
                     {
                         case 0:
                             {
-                                SceneManager.LoadScene("MainMenu");
+                                
                             } break;
                         case 1:
                             {
-                                Application.Quit();
+                                SceneManager.LoadScene("MainMenu");
                             } break;
                     }
                 } break;
