@@ -9,13 +9,14 @@ public class ProjectileAttackBullet : MonoBehaviour
     Rigidbody2D rb;
 
     GameObject target;
-    public PlayerController player;
+    PlayerController playerScript;
     Vector2 moveDirection;
 
     private void Start()
     {
         rb = GetComponent<Rigidbody2D>();
         target = GameObject.FindGameObjectWithTag("Player");
+        playerScript= target.GetComponent<PlayerController>();
 
 
         moveDirection = (target.transform.position - transform.position).normalized * moveSpeed;
@@ -26,8 +27,7 @@ public class ProjectileAttackBullet : MonoBehaviour
     {
         if (collision.gameObject.CompareTag("Player"))
         {
-            Debug.Log("Hit player");
-            player.Damage(1);
+            playerScript.Damage(2);
         }
     }
 }

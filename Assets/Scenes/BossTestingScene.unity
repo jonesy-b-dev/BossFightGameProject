@@ -475,6 +475,7 @@ MonoBehaviour:
   hp: 10
   healItemAmount: 0
   healAmount: 3
+  pauseMenu: {fileID: 0}
   speed: 7
   jumpPower: 11
   jumpBuffer: 0.2
