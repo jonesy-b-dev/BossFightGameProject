@@ -104,7 +104,7 @@ public class PlayerController : MonoBehaviour
                 if (TouchingR()) wallJumpDirection = -1;
 
                 wallJumping = true;
-                Invoke("SetWallJumpingToFalse", wallJumpTime);
+                Invoke(nameof(SetWallJumpingToFalse), wallJumpTime);
                 // See region Wall Jump in FixedUpdate for more
             }
 
@@ -253,12 +253,12 @@ public class PlayerController : MonoBehaviour
             kbActive = true;
             kbForce = new Vector2(powerX, powerY);
 
-            Invoke("SetKBActiveToFalse", time);
+            Invoke(nameof(SetKBActiveToFalse), time);
         }
     #endregion
 
     #region HP Methods
-        void Heal(int amount)
+    void Heal(int amount)
         {
             // INSERT HEAL ANIMATION. PROBABLY JUST A FLASHING GREEN OVERLAY BUT WE'LL FIGURE IT OUT LATER
             hp += amount;
@@ -279,19 +279,6 @@ public class PlayerController : MonoBehaviour
         {
 
         }
-<<<<<<< HEAD
-=======
-
-        // IMPORTANT
-        // Can be executed through any code, gives the player knockback by X/Y amount in dir direction for time seconds.
-        public void Knockback(float powerX, float powerY, float time)
-        {
-            kbActive = true;
-            kbForce = new Vector2(powerX, powerY);
-
-            Invoke(nameof(SetKBActiveToFalse), time);
-        }
->>>>>>> 9f518b7c046eb9e9aca50ceea98207768e0885e9
     #endregion
 
     void SetWallJumpingToFalse()
