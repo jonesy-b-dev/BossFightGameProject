@@ -28,7 +28,7 @@ public class MenuManager : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.W)) ChangeSelection(-1);
         if (Input.GetKeyDown(KeyCode.S)) ChangeSelection(1);
 
-        if (Input.GetKeyDown(KeyCode.Return)) Select(currentSelection);
+        if (Input.GetButtonDown("Jump")) Select(currentSelection);
         selectionImg.position = new Vector2(button[currentSelection].position.x, button[currentSelection].position.y);
     }
                                     

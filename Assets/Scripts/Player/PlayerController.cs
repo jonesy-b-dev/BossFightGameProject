@@ -24,6 +24,9 @@ public class PlayerController : MonoBehaviour
     [Header("Movement")]
 
     [Space(10)]
+    [SerializeField] private Animator animator;
+
+    [Space(10)]
     [SerializeField] private float speed = 8f;
     [SerializeField] private float jumpPower = 12f;
     [SerializeField] private float jumpBuffer;
@@ -203,15 +206,15 @@ public class PlayerController : MonoBehaviour
     #region Ground/Wall Checks
         // These all do the same, they draw a box the same size of the empty object in the editor and return true
         // when they collide with something.
-        private bool IsGrounded()
+        public bool IsGrounded()
         {
             return Physics2D.OverlapBox(groundCheck.position, groundCheck.localScale, 0, groundLayer);
         }
-        private bool TouchingL()
+        public bool TouchingL()
         {
             return Physics2D.OverlapBox(wallCheckL.position, wallCheckL.localScale, 0, groundLayer);
         }
-        private bool TouchingR()
+        public bool TouchingR()
         {
             return Physics2D.OverlapBox(wallCheckR.position, wallCheckR.localScale, 0, groundLayer);
         }
@@ -244,6 +247,9 @@ public class PlayerController : MonoBehaviour
             Knockback(rangedKBForce * -facing, player.velocity.y, rangedKBTime);
 
             rangedCooldownTimer = rangedCooldown;
+
+            animator.SetBool("isShooting", true);
+            Invoke(nameof(SetShootingToFalse), 0.1f);
         }
 
         // IMPORTANT
@@ -258,7 +264,7 @@ public class PlayerController : MonoBehaviour
     #endregion
 
     #region HP Methods
-    void Heal(int amount)
+        void Heal(int amount)
         {
             // INSERT HEAL ANIMATION. PROBABLY JUST A FLASHING GREEN OVERLAY BUT WE'LL FIGURE IT OUT LATER
             hp += amount;
@@ -269,7 +275,8 @@ public class PlayerController : MonoBehaviour
         // Can be executed through any code, subtracts d amount of damage from the player. Death function will be added later.
         public void Damage(int d)
         {
-            // INSERT DAMAGE ANIMATION
+            animator.SetBool("isHurting", true);
+            Invoke(nameof(SetHurtingToFalse), 0.1f);
 
             hp -= d;
             Debug.Log(hp);
@@ -288,5 +295,13 @@ public class PlayerController : MonoBehaviour
     void SetKBActiveToFalse() // Needed for Invoke() under the Combat Methods region -> Knockback()
     {
         kbActive = false;
+    }
+    void SetHurtingToFalse()
+    {
+        animator.SetBool("isHurting", false);
+    }
+    void SetShootingToFalse()
+    {
+        animator.SetBool("isShooting", false);
     }
 }
