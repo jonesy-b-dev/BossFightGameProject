@@ -5,7 +5,15 @@ using UnityEngine;
 
 public class BossMovement : MonoBehaviour
 {
-    [SerializeField] private Rigidbody2D rb;
+    //Boss components
+    private Rigidbody2D rb;
+    private ParticleSystem sweepParticle;
+    private CircleCollider2D sweepAttackCollider;
+    private BoxCollider2D slamCollider;
+    //Player reffrences
+    GameObject target;
+    PlayerController playerScript;
+
     public int bossHP = 1000;
     public bool chaseActivated = true;
     int previousAttack = 1;
@@ -15,12 +23,27 @@ public class BossMovement : MonoBehaviour
     [Space]
     [SerializeField] private GameObject projectileRainProjectile;
     [SerializeField] private GameObject projectileAttackProjectile;
-    [SerializeField] private BoxCollider2D sweepAttackCollider;
 
     private bool inAttckstage = false;
+    private bool canSlamDamage;
+    private bool canSweepDamage;
+
+    private void Start()
+    {
+        //Get boss component
+        rb = GetComponent<Rigidbody2D>();
+        sweepParticle = GetComponent<ParticleSystem>();
+        sweepAttackCollider = GetComponent<CircleCollider2D>();
+        slamCollider = GetComponent<BoxCollider2D>();
+
+        //Set player reffrences
+        target = GameObject.FindGameObjectWithTag("Player");
+        playerScript = target.GetComponent<PlayerController>();
+    }
 
     void Update()
     {
+        //Debug.Log(rb.velocity.y);
         if (!chaseActivated)
         {
             //Attack state
@@ -70,15 +93,20 @@ public class BossMovement : MonoBehaviour
     //Attacks
     private IEnumerator SweepAttack()
     {
+        canSweepDamage = true;
         sweepAttackCollider.enabled = true;
+        sweepParticle.Play();
+        //Damage is handeld in collision event
         yield return new WaitForSeconds(1);
     }
 
     private void BodySlam()
     {
+        canSlamDamage = true;
         rb.velocity = new Vector2(0, 0);
         rb.AddForce(new Vector2(0, 10), ForceMode2D.Impulse);
         rb.gravityScale = 1.5f;
+        //Damage is handeld in collision event
     }
 
     private void ProjectileAttack()
@@ -91,6 +119,24 @@ public class BossMovement : MonoBehaviour
         for (int i = 0; i < 50; i++)
         {
             Instantiate(projectileRainProjectile);
+        }
+    }
+
+    //Collision events
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.gameObject.CompareTag("Player") && canSlamDamage && rb.velocity.y < 0)
+        {
+            playerScript.Damage(5);
+            canSlamDamage = false;
+        }
+
+        else if (collision.gameObject.CompareTag("Player") && canSweepDamage)
+        {
+            playerScript.Damage(4);
+            Debug.Log("Sweep damage");
+            sweepAttackCollider.enabled = false;
+            canSweepDamage = false;
         }
     }
 }   
