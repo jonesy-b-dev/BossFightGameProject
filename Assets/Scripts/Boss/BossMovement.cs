@@ -10,25 +10,31 @@ public class BossMovement : MonoBehaviour
     private ParticleSystem sweepParticle;
     private CircleCollider2D sweepAttackCollider;
     private BoxCollider2D slamCollider;
+    [SerializeField] BoxCollider2D mainCollider;
+
     //Player reffrences
     GameObject target;
     PlayerController playerScript;
+    Transform playerTransform;
 
     public int bossHP = 1000;
     public bool chaseActivated = true;
+    [SerializeField] int bossSpeed;
+    Vector2 moveDirection;
     int previousAttack = 1;
 
     //Attack assets
     [Space]
     [Space]
-    [SerializeField] private GameObject projectileRainProjectile;
-    [SerializeField] private GameObject projectileAttackProjectile;
+    [SerializeField] GameObject projectileRainProjectile;
+    [SerializeField] GameObject projectileAttackProjectile;
 
     private bool inAttckstage = false;
     private bool canSlamDamage;
     private bool canSweepDamage;
+    private bool canChase = true;
 
-    private void Start()
+    private void Awake()
     {
         //Get boss component
         rb = GetComponent<Rigidbody2D>();
@@ -37,10 +43,13 @@ public class BossMovement : MonoBehaviour
         slamCollider = GetComponent<BoxCollider2D>();
 
         //Set player reffrences
+    }
+    private void Start()
+    {
         target = GameObject.FindGameObjectWithTag("Player");
         playerScript = target.GetComponent<PlayerController>();
+        playerTransform = target.transform;
     }
-
     void Update()
     {
         //Debug.Log(rb.velocity.y);
@@ -52,6 +61,19 @@ public class BossMovement : MonoBehaviour
                 inAttckstage = true;
                 StartCoroutine(StartAttackPhase());
             }
+            else if (inAttckstage && canChase)
+            {
+                Vector3 direction = (playerTransform.position - transform.position).normalized;
+                moveDirection = direction;
+            }
+        }
+    }
+
+    private void FixedUpdate()
+    {
+        if (inAttckstage && canChase)
+        {
+            rb.velocity = new Vector2(moveDirection.x, moveDirection.y) * bossSpeed;
         }
     }
 
@@ -102,7 +124,10 @@ public class BossMovement : MonoBehaviour
 
     private void BodySlam()
     {
+        canChase = false;
         canSlamDamage = true;
+        slamCollider.enabled = true;
+        mainCollider.enabled = true;
         rb.velocity = new Vector2(0, 0);
         rb.AddForce(new Vector2(0, 10), ForceMode2D.Impulse);
         rb.gravityScale = 1.5f;
@@ -116,7 +141,7 @@ public class BossMovement : MonoBehaviour
 
     private void ProjectileRainAttack()
     {
-        for (int i = 0; i < 50; i++)
+        for (int i = 0; i < 40; i++)
         {
             Instantiate(projectileRainProjectile);
         }
@@ -128,15 +153,23 @@ public class BossMovement : MonoBehaviour
         if (collision.gameObject.CompareTag("Player") && canSlamDamage && rb.velocity.y < 0)
         {
             playerScript.Damage(5);
+            slamCollider.enabled = false;
+            mainCollider.enabled = false;
             canSlamDamage = false;
+            canChase = true;
         }
 
         else if (collision.gameObject.CompareTag("Player") && canSweepDamage)
         {
             playerScript.Damage(4);
-            Debug.Log("Sweep damage");
             sweepAttackCollider.enabled = false;
             canSweepDamage = false;
+        }
+
+        else
+        {
+            mainCollider.enabled = false;
+            canChase = true;
         }
     }
 }   

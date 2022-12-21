@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class ProjectileAttackBullet : MonoBehaviour
 {
-    readonly float moveSpeed = 7f;
+    readonly float moveSpeed = 14f;
     
     Rigidbody2D rb;
 
