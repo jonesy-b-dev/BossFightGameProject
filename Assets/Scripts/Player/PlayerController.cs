@@ -69,7 +69,6 @@ public class PlayerController : MonoBehaviour
     [Space(10)]
     [SerializeField] private LayerMask enemyLayer;
     [SerializeField] private GameObject arrow;
-    [SerializeField] private GameObject shootParticle;
 
     [Space(10)]
     [SerializeField] private float meleeCooldown;
@@ -239,7 +238,6 @@ public class PlayerController : MonoBehaviour
         // Change to: enemy.GetComponent<BossScript>().Damage();
         if (enemy != null) Debug.Log("You hit " + enemy.name);
 
-<<<<<<< Updated upstream
         meleeCooldownTimer = meleeCooldown;
     }
     void OnDrawGizmos()
@@ -252,21 +250,6 @@ public class PlayerController : MonoBehaviour
     {
         //Call ranged audio event
         playerAudioScript.Ranged();
-=======
-            meleeCooldownTimer = meleeCooldown;
-        }
-        void OnDrawGizmos()
-        {
-            // Draw a yellow cube at the meleeCheck's position
-            Gizmos.color = Color.yellow;
-            Gizmos.DrawCube(meleeCheck.position, meleeCheck.localScale);
-        }
-        void Ranged()
-        {
-            arrow.GetComponent<Arrow>().dirX = facing;
-            Instantiate(arrow, new Vector2(transform.position.x + (facing * 0.75f), transform.position.y), Quaternion.identity);
-            Instantiate(shootParticle, new Vector2(transform.position.x + (facing * 0.75f), transform.position.y), Quaternion.Euler(0, 90 * facing, 0));
->>>>>>> Stashed changes
 
         //Ranged attack
         arrow.GetComponent<Arrow>().dirX = facing;

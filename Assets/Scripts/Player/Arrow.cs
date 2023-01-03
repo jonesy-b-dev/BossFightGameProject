@@ -10,13 +10,11 @@ public class Arrow : MonoBehaviour
 
     [SerializeField] private LayerMask enemyLayer;
     [SerializeField] private LayerMask groundLayer;
-    [SerializeField] private Transform particleTrail;
     public int dirX;
 
     void Start()
     {
         Destroy(gameObject, lifeTime);
-        particleTrail.parent = null;
     }
 
     // Update is called once per frame
