@@ -10676,6 +10676,11 @@ BoxCollider2D:
   m_CorrespondingSourceObject: {fileID: 3409235811940310635, guid: 0e33cae0a1e8d6046a41b4daf9f8ed3a, type: 3}
   m_PrefabInstance: {fileID: 677853461}
   m_PrefabAsset: {fileID: 0}
+--- !u!82 &472921907 stripped
+AudioSource:
+  m_CorrespondingSourceObject: {fileID: 2622414837439015267, guid: 0e33cae0a1e8d6046a41b4daf9f8ed3a, type: 3}
+  m_PrefabInstance: {fileID: 677853461}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &523336291
 GameObject:
   m_ObjectHideFlags: 3
@@ -10992,6 +10997,7 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 64
   arrow: {fileID: 5894220584554852758, guid: 32f533403beed43459f89972b385b99a, type: 3}
+  shootParticle: {fileID: 0}
   meleeCooldown: 0.5
   rangedCooldown: 4
 --- !u!50 &581420886
@@ -11331,6 +11337,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 706453022853149025, guid: 0e33cae0a1e8d6046a41b4daf9f8ed3a, type: 3}
+      propertyPath: m_RootOrder
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 1446872457121693202, guid: 0e33cae0a1e8d6046a41b4daf9f8ed3a, type: 3}
       propertyPath: collider
       value: 
@@ -11357,7 +11367,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2101894142249767814, guid: 0e33cae0a1e8d6046a41b4daf9f8ed3a, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 6.84
+      value: 7
       objectReference: {fileID: 0}
     - target: {fileID: 2101894142249767814, guid: 0e33cae0a1e8d6046a41b4daf9f8ed3a, type: 3}
       propertyPath: m_LocalPosition.z
@@ -11391,6 +11401,14 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 2701110994027170152, guid: 0e33cae0a1e8d6046a41b4daf9f8ed3a, type: 3}
+      propertyPath: audioSource
+      value: 
+      objectReference: {fileID: 472921907}
+    - target: {fileID: 2701110994027170152, guid: 0e33cae0a1e8d6046a41b4daf9f8ed3a, type: 3}
+      propertyPath: projectileAttack
+      value: 
+      objectReference: {fileID: 8300000, guid: a3ebd6a3bda5ea7458ad0191deddcfab, type: 3}
     - target: {fileID: 3090344304146228350, guid: 0e33cae0a1e8d6046a41b4daf9f8ed3a, type: 3}
       propertyPath: m_LocalScale.x
       value: 1
@@ -11435,6 +11453,10 @@ PrefabInstance:
       propertyPath: m_SpriteTilingProperty.oldSize.y
       value: 4.8
       objectReference: {fileID: 0}
+    - target: {fileID: 4101121524933172070, guid: 0e33cae0a1e8d6046a41b4daf9f8ed3a, type: 3}
+      propertyPath: m_RootOrder
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 4124123566895000919, guid: 0e33cae0a1e8d6046a41b4daf9f8ed3a, type: 3}
       propertyPath: m_Name
       value: Boss
@@ -11459,6 +11481,10 @@ PrefabInstance:
       propertyPath: projectileAttackProjectile
       value: 
       objectReference: {fileID: 3550427685330094926, guid: e99ecc70cf23c5a47a862b7f24b6156f, type: 3}
+    - target: {fileID: 5740227376309160122, guid: 0e33cae0a1e8d6046a41b4daf9f8ed3a, type: 3}
+      propertyPath: m_RootOrder
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 7338721813383541394, guid: 0e33cae0a1e8d6046a41b4daf9f8ed3a, type: 3}
       propertyPath: m_Sprite
       value: 
@@ -11846,7 +11872,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fecb12102af29154aa3b76ea302cb9f6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  pc: {fileID: 0}
+  pc: {fileID: 581420885}
 --- !u!114 &921147875
 MonoBehaviour:
   m_ObjectHideFlags: 0

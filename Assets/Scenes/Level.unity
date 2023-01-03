@@ -2129,6 +2129,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: fb20aaa814ddf304c8bab94b56b0714d, type: 3}
+--- !u!82 &715130069 stripped
+AudioSource:
+  m_CorrespondingSourceObject: {fileID: 2622414837439015267, guid: 0e33cae0a1e8d6046a41b4daf9f8ed3a, type: 3}
+  m_PrefabInstance: {fileID: 1437173718}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &717978498 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 9147385860736958265, guid: fb20aaa814ddf304c8bab94b56b0714d, type: 3}
@@ -3918,6 +3923,14 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 2701110994027170152, guid: 0e33cae0a1e8d6046a41b4daf9f8ed3a, type: 3}
+      propertyPath: audioSource
+      value: 
+      objectReference: {fileID: 715130069}
+    - target: {fileID: 2701110994027170152, guid: 0e33cae0a1e8d6046a41b4daf9f8ed3a, type: 3}
+      propertyPath: projectileAttack
+      value: 
+      objectReference: {fileID: 8300000, guid: a3ebd6a3bda5ea7458ad0191deddcfab, type: 3}
     - target: {fileID: 3090344304146228350, guid: 0e33cae0a1e8d6046a41b4daf9f8ed3a, type: 3}
       propertyPath: m_LocalPosition.x
       value: 25.52

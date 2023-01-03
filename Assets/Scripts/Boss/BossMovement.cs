@@ -11,6 +11,7 @@ public class BossMovement : MonoBehaviour
     private CircleCollider2D sweepAttackCollider;
     private BoxCollider2D slamCollider;
     [SerializeField] BoxCollider2D mainCollider;
+    BossAudio bossAudioScript;
 
     //Player reffrences
     GameObject target;
@@ -46,6 +47,7 @@ public class BossMovement : MonoBehaviour
     }
     private void Start()
     {
+        bossAudioScript = GetComponent<BossAudio>();
         target = GameObject.FindGameObjectWithTag("Player");
         playerScript = target.GetComponent<PlayerController>();
         playerTransform = target.transform;
@@ -136,6 +138,7 @@ public class BossMovement : MonoBehaviour
 
     private void ProjectileAttack()
     {
+        bossAudioScript.ProjectileAttack();
         Instantiate(projectileAttackProjectile, transform.position, Quaternion.identity);
     }
 

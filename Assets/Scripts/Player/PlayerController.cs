@@ -251,6 +251,7 @@ public class PlayerController : MonoBehaviour
 
         void Ranged()
         {
+            playerAudioScript.Ranged();
             arrow.GetComponent<Arrow>().dirX = facing;
             Instantiate(arrow, new Vector2(transform.position.x + (facing * 0.75f), transform.position.y), Quaternion.identity);
             Instantiate(shootParticle, new Vector2(transform.position.x + (facing * 0.75f), transform.position.y), Quaternion.Euler(0, 90 * facing, 0));
