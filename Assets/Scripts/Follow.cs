@@ -5,8 +5,19 @@ using UnityEngine;
 public class Follow : MonoBehaviour
 {
     [SerializeField] private Transform target;
+    private bool targetExists = true;
     void Update()
     {
-        transform.position = target.position;
+        if (targetExists)
+        {
+            try
+            {
+                transform.position = target.position;
+            }
+            catch
+            {
+                targetExists = false;
+            }
+        }
     }
 }

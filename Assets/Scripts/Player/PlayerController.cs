@@ -229,91 +229,83 @@ public class PlayerController : MonoBehaviour
     #endregion
 
     #region Combat Methods
-    void Melee()
-    {
-        // INSERT ATTACK ANIMATION
+        void Melee()
+        {
+            // INSERT ATTACK ANIMATION
 
-        Collider2D enemy = Physics2D.OverlapBox(meleeCheck.position, meleeCheck.localScale, 0, enemyLayer);
-        Gizmos.color = Color.red;
+            Collider2D enemy = Physics2D.OverlapBox(meleeCheck.position, meleeCheck.localScale, 0, enemyLayer);
+            Gizmos.color = Color.red;
 
-        // Change to: enemy.GetComponent<BossScript>().Damage();
-        if (enemy != null) Debug.Log("You hit " + enemy.name);
+            // Change to: enemy.GetComponent<BossScript>().Damage();
+            if (enemy != null) Debug.Log("You hit " + enemy.name);
 
-<<<<<<< Updated upstream
-        meleeCooldownTimer = meleeCooldown;
-    }
-    void OnDrawGizmos()
-    {
-        // Draw a yellow cube at the meleeCheck's position
-        Gizmos.color = Color.yellow;
-        Gizmos.DrawCube(meleeCheck.position, meleeCheck.localScale);
-    }
-    void Ranged()
-    {
-        //Call ranged audio event
-        playerAudioScript.Ranged();
-=======
             meleeCooldownTimer = meleeCooldown;
         }
+
         void OnDrawGizmos()
         {
             // Draw a yellow cube at the meleeCheck's position
             Gizmos.color = Color.yellow;
             Gizmos.DrawCube(meleeCheck.position, meleeCheck.localScale);
         }
+
         void Ranged()
         {
             arrow.GetComponent<Arrow>().dirX = facing;
             Instantiate(arrow, new Vector2(transform.position.x + (facing * 0.75f), transform.position.y), Quaternion.identity);
             Instantiate(shootParticle, new Vector2(transform.position.x + (facing * 0.75f), transform.position.y), Quaternion.Euler(0, 90 * facing, 0));
->>>>>>> Stashed changes
 
-        //Ranged attack
-        arrow.GetComponent<Arrow>().dirX = facing;
-        Instantiate(arrow, new Vector2(transform.position.x + (facing * 0.75f), transform.position.y), Quaternion.identity);
 
-        Knockback(rangedKBForce * -facing, player.velocity.y, rangedKBTime);
+            //Ranged attack
+            arrow.GetComponent<Arrow>().dirX = facing;
+            Instantiate(arrow, new Vector2(transform.position.x + (facing * 0.75f), transform.position.y), Quaternion.identity);
 
-        rangedCooldownTimer = rangedCooldown;
+            Knockback(rangedKBForce * -facing, player.velocity.y, rangedKBTime);
 
-        animator.SetBool("isShooting", true);
-        Invoke(nameof(SetShootingToFalse), 0.1f);
-    }
+            rangedCooldownTimer = rangedCooldown;
 
-    // IMPORTANT
-    // Can be executed through any code, gives the player knockback by X/Y amount in dir direction for time seconds.
-    public void Knockback(float powerX, float powerY, float time)
-    {
-        kbActive = true;
-        kbForce = new Vector2(powerX, powerY);
+            // Ranged Animation
+            animator.SetBool("isShooting", true);
+            Invoke(nameof(SetShootingToFalse), 0.1f);
 
-        Invoke(nameof(SetKBActiveToFalse), time);
-    }
+            //Call ranged audio event
+            playerAudioScript.Ranged();
+        }
+
+        // IMPORTANT
+        // Can be executed through any code, gives the player knockback by X/Y amount in dir direction for time seconds.
+        public void Knockback(float powerX, float powerY, float time)
+        {
+            kbActive = true;
+            kbForce = new Vector2(powerX, powerY);
+
+            Invoke(nameof(SetKBActiveToFalse), time);
+        }
     #endregion
 
     #region HP Methods
-    void Heal(int amount)
-    {
-        // INSERT HEAL ANIMATION. PROBABLY JUST A FLASHING GREEN OVERLAY BUT WE'LL FIGURE IT OUT LATER
-        hp += amount;
-        healItemAmount--;
-    }
+        void Heal(int amount)
+        {
+            // INSERT HEAL ANIMATION. PROBABLY JUST A FLASHING GREEN OVERLAY BUT WE'LL FIGURE IT OUT LATER
+            hp += amount;
+            healItemAmount--;
+        }
 
-    // IMPORTANT
-    // Can be executed through any code, subtracts d amount of damage from the player. Death function will be added later.
-    public void Damage(int d)
-    {
-        animator.SetBool("isHurting", true);
-        Invoke(nameof(SetHurtingToFalse), 0.1f);
+        // IMPORTANT
+        // Can be executed through any code, subtracts d amount of damage from the player. Death function will be added later.
+        public void Damage(int d)
+        {
+            animator.SetBool("isHurting", true);
+            Invoke(nameof(SetHurtingToFalse), 0.1f);
 
-        hp -= d;
-        Debug.Log(hp);
-        if (hp <= 0) Die();
-    }
-    void Die()
-    {
+            hp -= d;
+            Debug.Log(hp);
+            if (hp <= 0) Die();
+        }
+        void Die()
+        {
 
-    }
+        }
     #endregion
 
     void SetWallJumpingToFalse()
