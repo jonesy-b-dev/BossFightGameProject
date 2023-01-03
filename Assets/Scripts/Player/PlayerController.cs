@@ -100,7 +100,7 @@ public class PlayerController : MonoBehaviour
         else jumpBufferCounter -= Time.deltaTime;
 
         // Jump mechanic. Checks if both your jumpBuffer and CoyoteTime are active, AND stops you from jumping normally instead of doing a walljump.
-        if (jumpBufferCounter > 0 && coyoteTimeCounter > 0f && !(TouchingL() || TouchingR()))
+        if (jumpBufferCounter > 0 && coyoteTimeCounter > 0f )
         {
             player.velocity = new Vector2(player.velocity.x, jumpPower);
             jumpBufferCounter = 0f; // Prevents spamming
