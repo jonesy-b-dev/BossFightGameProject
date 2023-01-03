@@ -12,6 +12,8 @@ public class BossMovement : MonoBehaviour
     private BoxCollider2D slamCollider;
     [SerializeField] BoxCollider2D mainCollider;
     BossAudio bossAudioScript;
+    [SerializeField] private GameObject GroundCheckL;
+    [SerializeField] private GameObject GroundCheckR;
 
     //Player reffrences
     GameObject target;
@@ -68,7 +70,16 @@ public class BossMovement : MonoBehaviour
                 Vector3 direction = (playerTransform.position - transform.position).normalized;
                 moveDirection = direction;
             }
+            //if (canSlamDamage && (GroundCheckL.GetComponent<BoxCollider2D>. || GroundCheckR.GetComponent<BoxCollider2D>))
+            //{
+            //    BodySlamAudio();
+            //}
         }
+    }
+
+    private void BodySlamAudio()
+    {
+        RaycastHit2D hit = Physics2D.Raycast(transform.position, -Vector2.up, 1);
     }
 
     private void FixedUpdate()
