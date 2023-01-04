@@ -16,7 +16,7 @@ TagManager:
   - Enemy
   - Player
   - BreakableWall
-  - 
+  - Post-Processing
   - 
   - 
   - 
@@ -45,6 +45,9 @@ TagManager:
     locked: 0
   - name: Ground
     uniqueID: 3178512799
+    locked: 0
+  - name: Player
+    uniqueID: 2174346077
     locked: 0
   - name: UI
     uniqueID: 1418806847
