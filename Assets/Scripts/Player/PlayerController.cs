@@ -231,6 +231,7 @@ public class PlayerController : MonoBehaviour
     #region Combat Methods
         void Melee()
         {
+            playerAudioScript.Melee();
             // INSERT ATTACK ANIMATION
 
             Collider2D enemy = Physics2D.OverlapBox(meleeCheck.position, meleeCheck.localScale, 0, enemyLayer);
