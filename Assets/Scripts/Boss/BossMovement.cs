@@ -75,6 +75,15 @@ public class BossMovement : MonoBehaviour
         }
     }
 
+    public void Damage(int d)
+    {
+        bossHP -= d;
+        Debug.Log(bossHP);
+        if (bossHP <= 0)
+        {
+            // Die();
+        }
+    }
     private void BodySlamAudio()
     {
         RaycastHit2D hit = Physics2D.Raycast(transform.position, -Vector2.up, 1);

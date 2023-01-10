@@ -15,6 +15,10 @@ public class PlayerController : MonoBehaviour
     PlayerAudio playerAudioScript;
     public bool isPaused;
 
+    [Space(10)]
+    public bool hasDied;
+    [SerializeField] private GameObject dieParticle;
+
     #region Movement Variables
     private float horizontal;
     private int facing = 1;
@@ -72,6 +76,7 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private GameObject shootParticle;
 
     [Space(10)]
+    [SerializeField] private int meleeDamage;
     [SerializeField] private float meleeCooldown;
     private float meleeCooldownTimer;
     [SerializeField] private float rangedCooldown;
@@ -146,7 +151,7 @@ public class PlayerController : MonoBehaviour
         #region Pausing
         if (Input.GetKeyDown(KeyCode.Escape))
         {
-            if (!isPaused)
+            if (!isPaused && !hasDied)
             {
                 pauseMenu.SetActive(true);
                 isPaused = true;
@@ -154,7 +159,7 @@ public class PlayerController : MonoBehaviour
                 Time.timeScale = 0;
                 Debug.Log("Paused");
             }
-            else if (isPaused)
+            else if (isPaused && !hasDied)
             {
                 pauseMenu.SetActive(false);
                 isPaused = false;
@@ -232,13 +237,20 @@ public class PlayerController : MonoBehaviour
         void Melee()
         {
             playerAudioScript.Melee();
-            // INSERT ATTACK ANIMATION
+            animator.SetBool("isMeleeing", true);
+            Invoke(nameof(SetMeleeToFalse), 0.1f);
 
             Collider2D enemy = Physics2D.OverlapBox(meleeCheck.position, meleeCheck.localScale, 0, enemyLayer);
-            Gizmos.color = Color.red;
 
             // Change to: enemy.GetComponent<BossScript>().Damage();
-            if (enemy != null) Debug.Log("You hit " + enemy.name);
+            if (enemy != null)
+        {
+            if (enemy.tag == "Boss")
+            {
+                BossMovement boss = enemy.gameObject.GetComponent<BossMovement>();
+                boss.Damage(meleeDamage);
+            }
+        }
 
             meleeCooldownTimer = meleeCooldown;
         }
@@ -246,7 +258,13 @@ public class PlayerController : MonoBehaviour
         void OnDrawGizmos()
         {
             // Draw a yellow cube at the meleeCheck's position
-            Gizmos.color = Color.yellow;
+            if (meleeCooldownTimer > 0)
+            {
+                Gizmos.color = Color.red;
+            } else
+            {
+                Gizmos.color = Color.yellow;
+            }
             Gizmos.DrawCube(meleeCheck.position, meleeCheck.localScale);
         }
 
@@ -306,7 +324,11 @@ public class PlayerController : MonoBehaviour
         }
         void Die()
         {
+            Instantiate(dieParticle, transform.position, Quaternion.identity);
+            hasDied = true;
+            GetComponent<SpriteRenderer>().enabled = false;
 
+            Invoke(nameof(ShowDeathScreen), 1f);
         }
     #endregion
 
@@ -325,5 +347,18 @@ public class PlayerController : MonoBehaviour
     void SetShootingToFalse()
     {
         animator.SetBool("isShooting", false);
+    }
+    void SetMeleeToFalse()
+    {
+        animator.SetBool("isMeleeing", false);
+    }
+
+    void ShowDeathScreen()
+    {
+        pauseMenu.SetActive(true);
+        isPaused = true;
+
+        Time.timeScale = 0;
+        Debug.Log("You Died!");
     }
 }

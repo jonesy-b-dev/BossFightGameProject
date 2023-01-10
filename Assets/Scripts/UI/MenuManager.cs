@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using TMPro;
 
 public class MenuManager : MonoBehaviour
 {
@@ -9,6 +10,8 @@ public class MenuManager : MonoBehaviour
     private int maxSelection;
 
     public PlayerController pc;
+    public TextMeshProUGUI headerText;
+    public TextMeshProUGUI retryText;
 
     [SerializeField]
     private Transform selectionImg;
@@ -30,6 +33,12 @@ public class MenuManager : MonoBehaviour
 
         if (Input.GetButtonDown("Jump")) Select(currentSelection);
         selectionImg.position = new Vector2(button[currentSelection].position.x, button[currentSelection].position.y);
+
+        if (pc.hasDied)
+        {
+            headerText.text = "You Died!";
+            retryText.text = "Retry";
+        }
     }
                                     
     private void ChangeSelection(int change)
@@ -63,11 +72,18 @@ public class MenuManager : MonoBehaviour
                     {
                         case 0:
                             {
-                                pc.pauseMenu.SetActive(false);
-                                pc.isPaused = false;
+                                if (!pc.hasDied)
+                                {
+                                    pc.pauseMenu.SetActive(false);
+                                    pc.isPaused = false;
 
-                                Time.timeScale = 1;
-                                Debug.Log("Unpaused");
+                                    Time.timeScale = 1;
+                                    Debug.Log("Unpaused");
+                                } else
+                                {
+                                    Time.timeScale = 1;
+                                    SceneManager.LoadScene("Level");
+                                }
                             } break;
                         case 1:
                             {
