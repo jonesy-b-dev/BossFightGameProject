@@ -11,6 +11,7 @@ public class PlayerController : MonoBehaviour
     public int healItemAmount;
     [SerializeField] private int healAmount;
 
+    //PauseMenu reffrence
     public GameObject pauseMenu;
     PlayerAudio playerAudioScript;
     public bool isPaused;
@@ -19,6 +20,10 @@ public class PlayerController : MonoBehaviour
     public bool hasDied;
     public bool hasWon;
     [SerializeField] private GameObject dieParticle;
+
+    //Boss reffrence
+    [Space(10)]
+    [SerializeField] private GameObject boss;
 
     #region Movement Variables
     private float horizontal;
@@ -85,10 +90,13 @@ public class PlayerController : MonoBehaviour
     private bool kbActive;
 
     #endregion
+    RouteFollow bossRoute;
 
     private void Start()
     {
         playerAudioScript = GetComponent<PlayerAudio>();
+        //boss = GameObject.FindGameObjectWithTag("Boss");
+        bossRoute = boss.GetComponent<RouteFollow>();
     }
 
 
@@ -365,5 +373,14 @@ public class PlayerController : MonoBehaviour
         isPaused = true;
 
         Time.timeScale = 0;
+    }
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.gameObject.CompareTag("BossTrigger"));
+        {
+            Debug.Log("dikke kanker bueaidfhuksj ,akopTXNDKMzTH FGD CBNH");
+            bossRoute.coroutineAllowed = true;
+        }
     }
 }

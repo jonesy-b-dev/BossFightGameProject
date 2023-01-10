@@ -144,7 +144,7 @@ public class BossMovement : MonoBehaviour
     {
         canSweepDamage = true;
         sweepAttackCollider.enabled = true;
-        sweepParticle.Play();
+        //sweepParticle.Play();
         //Damage is handeld in collision event
         yield return new WaitForSeconds(1);
     }
