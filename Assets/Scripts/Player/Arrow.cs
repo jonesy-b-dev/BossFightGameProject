@@ -2,11 +2,13 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using static UnityEngine.EventSystems.EventTrigger;
 
 public class Arrow : MonoBehaviour
 {
     private readonly float speed = 30f;
     private readonly float lifeTime = 3f;
+    private readonly int arrowDamage = 100;
 
     [SerializeField] private LayerMask enemyLayer;
     [SerializeField] private LayerMask groundLayer;
@@ -42,6 +44,11 @@ public class Arrow : MonoBehaviour
                 wallParticle.Play();
 
                 Destroy(hitObject.gameObject, 1);
+            }
+            if (hitObject.gameObject.tag == "Boss")
+            {
+                BossMovement boss = hitObject.gameObject.GetComponent<BossMovement>();
+                boss.Damage(arrowDamage);
             }
 
             Destroy(gameObject);

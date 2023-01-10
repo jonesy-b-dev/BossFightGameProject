@@ -29,6 +29,7 @@ public class BossMovement : MonoBehaviour
     [Space]
     [SerializeField] GameObject projectileRainProjectile;
     [SerializeField] GameObject projectileAttackProjectile;
+    [SerializeField] GameObject dieParticle;
 
     private bool inAttckstage = false;
     private bool canSlamDamage;
@@ -78,11 +79,17 @@ public class BossMovement : MonoBehaviour
     public void Damage(int d)
     {
         bossHP -= d;
-        Debug.Log(bossHP);
+        Debug.Log("You hit the boss! HP = " + bossHP);
         if (bossHP <= 0)
         {
-            // Die();
+            Die();
         }
+    }
+    private void Die()
+    {
+        Instantiate(dieParticle, transform.position, Quaternion.identity);
+        GetComponent<SpriteRenderer>().enabled = false;
+        playerScript.Win();
     }
     private void BodySlamAudio()
     {

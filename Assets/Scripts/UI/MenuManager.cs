@@ -39,6 +39,11 @@ public class MenuManager : MonoBehaviour
             headerText.text = "You Died!";
             retryText.text = "Retry";
         }
+        if (pc.hasWon)
+        {
+            headerText.text = "You Won!";
+            retryText.text = "Play Again";
+        }
     }
                                     
     private void ChangeSelection(int change)
@@ -72,7 +77,7 @@ public class MenuManager : MonoBehaviour
                     {
                         case 0:
                             {
-                                if (!pc.hasDied)
+                                if (!pc.hasDied && !pc.hasWon)
                                 {
                                     pc.pauseMenu.SetActive(false);
                                     pc.isPaused = false;

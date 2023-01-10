@@ -17,6 +17,7 @@ public class PlayerController : MonoBehaviour
 
     [Space(10)]
     public bool hasDied;
+    public bool hasWon;
     [SerializeField] private GameObject dieParticle;
 
     #region Movement Variables
@@ -245,7 +246,7 @@ public class PlayerController : MonoBehaviour
             // Change to: enemy.GetComponent<BossScript>().Damage();
             if (enemy != null)
         {
-            if (enemy.tag == "Boss")
+            if (enemy.gameObject.tag == "Boss")
             {
                 BossMovement boss = enemy.gameObject.GetComponent<BossMovement>();
                 boss.Damage(meleeDamage);
@@ -330,6 +331,11 @@ public class PlayerController : MonoBehaviour
 
             Invoke(nameof(ShowDeathScreen), 1f);
         }
+        public void Win()
+        {
+            hasWon = true;
+            Invoke(nameof(ShowDeathScreen), 1f);
+        }
     #endregion
 
     void SetWallJumpingToFalse()
@@ -359,6 +365,5 @@ public class PlayerController : MonoBehaviour
         isPaused = true;
 
         Time.timeScale = 0;
-        Debug.Log("You Died!");
     }
 }
