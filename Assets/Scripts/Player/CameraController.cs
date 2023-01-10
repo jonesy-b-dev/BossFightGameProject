@@ -17,6 +17,9 @@ public class CameraController : MonoBehaviour
     private void Start()
     {
         cm = cam.GetComponent<CinemachineVirtualCamera>();
+        cm.Follow = gameObject.transform;
+        cm.m_Lens.OrthographicSize = 6;
+        cm.GetComponent<CinemachineConfiner2D>().enabled = true;
     }
     private void OnTriggerEnter2D(Collider2D collision)
     {
