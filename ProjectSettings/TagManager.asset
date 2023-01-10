@@ -6,6 +6,7 @@ TagManager:
   tags:
   - EndOfChaseTrigger
   - BreakableWall
+  - Boss
   layers:
   - Default
   - TransparentFX
@@ -17,7 +18,7 @@ TagManager:
   - Player
   - BreakableWall
   - Post-Processing
-  - 
+  - TriggerBoss
   - 
   - 
   - 

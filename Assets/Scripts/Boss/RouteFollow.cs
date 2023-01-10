@@ -18,7 +18,7 @@ public class RouteFollow : MonoBehaviour
     {
         routeToGo = 0;
         tParam = 0f;
-        speed = 0.5f;
+        speed = 0.4f;
         coroutineAllowed = true;
     }
 

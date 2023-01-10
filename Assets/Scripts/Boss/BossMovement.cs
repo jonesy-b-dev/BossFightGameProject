@@ -12,8 +12,6 @@ public class BossMovement : MonoBehaviour
     private BoxCollider2D slamCollider;
     [SerializeField] BoxCollider2D mainCollider;
     BossAudio bossAudioScript;
-    [SerializeField] private GameObject GroundCheckL;
-    [SerializeField] private GameObject GroundCheckR;
 
     //Player reffrences
     GameObject target;
@@ -161,8 +159,8 @@ public class BossMovement : MonoBehaviour
         }
     }
 
-    //Collision events
-    private void OnTriggerEnter2D(Collider2D collision)
+        //Collision events
+        private void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.gameObject.CompareTag("Player") && canSlamDamage && rb.velocity.y < 0)
         {
