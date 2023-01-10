@@ -1,6 +1,4 @@
 using System.Collections;
-using System.Collections.Generic;
-using Unity.VisualScripting;
 using UnityEngine;
 
 public class BossMovement : MonoBehaviour
@@ -175,8 +173,8 @@ public class BossMovement : MonoBehaviour
         }
     }
 
-        //Collision events
-        private void OnTriggerEnter2D(Collider2D collision)
+    //Collision events
+    private void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.gameObject.CompareTag("Player") && canSlamDamage && rb.velocity.y < 0)
         {
@@ -200,4 +198,4 @@ public class BossMovement : MonoBehaviour
             canChase = true;
         }
     }
-}   
+}

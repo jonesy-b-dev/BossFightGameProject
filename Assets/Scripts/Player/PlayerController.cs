@@ -11,6 +11,12 @@ public class PlayerController : MonoBehaviour
     public int healItemAmount;
     [SerializeField] private int healAmount;
 
+    //Audio
+    [Space(10)]
+    [SerializeField] private AudioSource musicSource;
+    [SerializeField] private AudioClip bossMusic;
+    [SerializeField] private AudioClip chaseMusic;
+
     //PauseMenu reffrence
     public GameObject pauseMenu;
     PlayerAudio playerAudioScript;
@@ -377,10 +383,17 @@ public class PlayerController : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.gameObject.CompareTag("BossTrigger"));
+        if (collision.gameObject.layer == 10)
         {
-            Debug.Log("dikke kanker bueaidfhuksj ,akopTXNDKMzTH FGD CBNH");
+            musicSource.clip = chaseMusic;
+            musicSource.Play();
             bossRoute.coroutineAllowed = true;
+        }
+        else if (collision.gameObject.layer == 11)
+        {
+            Debug.Log("jhfgkasdgfasdhgfkjsdkgfakhsdkgfhsdgfhjsadgfasjdgfkjasg");
+            musicSource.clip = bossMusic;
+            musicSource.Play();
         }
     }
 }

@@ -13,16 +13,6 @@ public class RouteFollow : MonoBehaviour
     private float speed = 0.4f;
     public bool coroutineAllowed = false;
 
-    private void Awake()
-    {
-        coroutineAllowed = false;
-    }
-
-    private void Start()
-    {
-        coroutineAllowed = false;
-    }
-
     private void Update()
     {
         //Debug.Log(coroutineAllowed);
