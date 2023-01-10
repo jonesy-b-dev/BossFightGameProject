@@ -12,7 +12,7 @@ public class ProjectileRainProjectile : MonoBehaviour
     {
         target = GameObject.FindGameObjectWithTag("Player");
         playerScript = target.GetComponent<PlayerController>();
-        transform.position = new Vector2(Random.Range(-20f, 20f), Random.Range(6f, 26f));
+        transform.position = new Vector2(Random.Range(166f, 188f), Random.Range(-20f, 7f));
 
         Destroy(gameObject, 3);
     }
