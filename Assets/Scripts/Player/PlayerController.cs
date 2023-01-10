@@ -21,6 +21,7 @@ public class PlayerController : MonoBehaviour
     public GameObject pauseMenu;
     PlayerAudio playerAudioScript;
     public bool isPaused;
+    [SerializeField] GameObject bossHpBar;
 
     [Space(10)]
     public bool hasDied;
@@ -391,7 +392,7 @@ public class PlayerController : MonoBehaviour
         }
         else if (collision.gameObject.layer == 11)
         {
-            Debug.Log("jhfgkasdgfasdhgfkjsdkgfakhsdkgfhsdgfhjsadgfasjdgfkjasg");
+            bossHpBar.SetActive(true);
             musicSource.clip = bossMusic;
             musicSource.Play();
         }
