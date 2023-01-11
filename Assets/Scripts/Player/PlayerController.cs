@@ -260,15 +260,16 @@ public class PlayerController : MonoBehaviour
 
             Collider2D enemy = Physics2D.OverlapBox(meleeCheck.position, meleeCheck.localScale, 0, enemyLayer);
 
-            // Change to: enemy.GetComponent<BossScript>().Damage();
             if (enemy != null)
-        {
-            if (enemy.gameObject.tag == "Boss")
             {
-                BossMovement boss = enemy.gameObject.GetComponent<BossMovement>();
-                boss.Damage(meleeDamage);
+                if (enemy.gameObject.tag == "Boss")
+                {
+                    Debug.Log("Boss has been hit!");
+                    BossMovement boss = enemy.gameObject.GetComponent<BossMovement>();
+                    boss.Damage(meleeDamage);
+                }
+            Debug.Log("Something was hit");
             }
-        }
 
             meleeCooldownTimer = meleeCooldown;
         }
