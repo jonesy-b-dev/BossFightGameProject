@@ -8,7 +8,7 @@ public class Arrow : MonoBehaviour
 {
     private readonly float speed = 30f;
     private readonly float lifeTime = 3f;
-    private readonly int arrowDamage = 100;
+    private readonly int arrowDamage = 50;
 
     [SerializeField] private LayerMask enemyLayer;
     [SerializeField] private LayerMask groundLayer;
@@ -34,7 +34,7 @@ public class Arrow : MonoBehaviour
             Debug.Log("You hit " + hitObject.name);
             
             //Breakable wall
-            if (hitObject.gameObject.layer == 6)
+/*            if (hitObject.gameObject.layer == 6)
             {
                 ParticleSystem wallParticle =  hitObject.GetComponent<ParticleSystem>();
                 Collider2D wallCol = hitObject.GetComponent<Collider2D>();
@@ -44,12 +44,12 @@ public class Arrow : MonoBehaviour
                 wallParticle.Play();
 
                 Destroy(hitObject.gameObject, 1);
-            }
+            }*/
             if (hitObject.gameObject.tag == "Boss")
             {
                 BossMovement boss = hitObject.gameObject.GetComponent<BossMovement>();
-                boss.Damage(arrowDamage);
-
+                if (!boss.chaseActivated) boss.Damage(arrowDamage);
+                Destroy(gameObject);
             }
 
             Destroy(gameObject);

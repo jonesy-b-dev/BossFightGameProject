@@ -266,7 +266,7 @@ public class PlayerController : MonoBehaviour
                 {
                     Debug.Log("Boss has been hit!");
                     BossMovement boss = enemy.gameObject.GetComponent<BossMovement>();
-                    boss.Damage(meleeDamage);
+                    if (!boss.chaseActivated) boss.Damage(meleeDamage);
                 }
             Debug.Log("Something was hit");
             }
