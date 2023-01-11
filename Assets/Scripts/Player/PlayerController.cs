@@ -402,14 +402,16 @@ public class PlayerController : MonoBehaviour
             bossHpBar.SetActive(true);
             musicSource.clip = bossMusic;
             musicSource.Play();
-        }
-    }
 
-    private void OnCollisionEnter(Collision collision)
-    {
+            boss.transform.position = new Vector2(transform.position.x, transform.position.y + 5);
+            boss.GetComponent<BossMovement>().chaseActivated = false;
+        }
+
         if (collision.gameObject.CompareTag("Boss"))
         {
-            Damage(1);
+            BossMovement boss = collision.gameObject.GetComponent<BossMovement>();
+            if (boss.chaseActivated == true) Damage(hp);
+            else Damage(10);
         }
     }
 }

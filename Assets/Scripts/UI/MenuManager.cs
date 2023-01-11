@@ -34,16 +34,23 @@ public class MenuManager : MonoBehaviour
         if (Input.GetButtonDown("Jump")) Select(currentSelection);
         selectionImg.position = new Vector2(button[currentSelection].position.x, button[currentSelection].position.y);
 
-        if (pc.hasDied)
+        try
         {
-            headerText.text = "You Died!";
-            retryText.text = "Retry";
-        }
-        if (pc.hasWon)
+            if (pc.hasDied)
+            {
+                headerText.text = "You Died!";
+                retryText.text = "Retry";
+            }
+            if (pc.hasWon)
+            {
+                headerText.text = "You Won!";
+                retryText.text = "Play Again";
+            }
+        } catch
         {
-            headerText.text = "You Won!";
-            retryText.text = "Play Again";
+            var a = 1;
         }
+
     }
                                     
     private void ChangeSelection(int change)
