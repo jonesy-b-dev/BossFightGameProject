@@ -50,7 +50,6 @@ public class Arrow : MonoBehaviour
                 BossMovement boss = hitObject.gameObject.GetComponent<BossMovement>();
                 boss.Damage(arrowDamage);
 
-                Destroy(hitObject.gameObject, 1);
             }
 
             Destroy(gameObject);
