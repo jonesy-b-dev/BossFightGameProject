@@ -79,6 +79,7 @@ public class PlayerController : MonoBehaviour
     [Space(10)]
 
     [SerializeField] private Transform meleeCheck;
+    [SerializeField] private GameObject meleeAnim;
 
     [Space(10)]
     [SerializeField] private float rangedKBForce;
@@ -259,8 +260,11 @@ public class PlayerController : MonoBehaviour
             Invoke(nameof(SetMeleeToFalse), 0.1f);
 
             Collider2D enemy = Physics2D.OverlapBox(meleeCheck.position, meleeCheck.localScale, 0, enemyLayer);
+            
+        if (facing == 1) Instantiate(meleeAnim, new Vector2(transform.position.x + 1.354f, transform.position.y), Quaternion.identity);
+        if (facing == -1) Instantiate(meleeAnim, new Vector2(transform.position.x - 1.354f, transform.position.y), Quaternion.Euler(0, 180, 0));
 
-            if (enemy != null)
+        if (enemy != null)
             {
                 if (enemy.gameObject.tag == "Boss")
                 {
@@ -292,7 +296,7 @@ public class PlayerController : MonoBehaviour
             playerAudioScript.Ranged();
             arrow.GetComponent<Arrow>().dirX = facing;
             Instantiate(arrow, new Vector2(transform.position.x + (facing * 0.75f), transform.position.y), Quaternion.identity);
-            Instantiate(shootParticle, new Vector2(transform.position.x + (facing * 0.75f), transform.position.y), Quaternion.Euler(0, 90 * facing, 0));
+            Instantiate(shootParticle, new Vector2(transform.position.x + (facing * 0.75f), transform.position.y), Quaternion.Euler(0, 180 * facing, 0));
 
 
             //Ranged attack
