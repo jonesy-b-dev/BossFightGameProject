@@ -45,7 +45,7 @@ public class Spikes : MonoBehaviour
         if (collision.gameObject.layer == 7)
         {
             player = collision.gameObject.GetComponent<PlayerController>();
-            player.Damage(1);
+            player.Damage(5);
             player.Knockback(powerX, powerY, time);
         }
     }

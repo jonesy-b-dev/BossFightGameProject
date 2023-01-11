@@ -1,4 +1,7 @@
+using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
+using TMPro;
 
 public class PlayerController : MonoBehaviour
 {
@@ -8,8 +11,10 @@ public class PlayerController : MonoBehaviour
     // I learned this in a Youtube tutorial so correct me if I'm wrong LMAO
 
     public int hp;
+    private int maxHp;
     public int healItemAmount;
     [SerializeField] private int healAmount;
+    [SerializeField] private TextMeshProUGUI healTxt;
 
     //Audio
     [Space(10)]
@@ -107,6 +112,9 @@ public class PlayerController : MonoBehaviour
         playerAudioScript = GetComponent<PlayerAudio>();
         //boss = GameObject.FindGameObjectWithTag("Boss");
         bossRoute = boss.GetComponent<RouteFollow>();
+
+        healTxt.text = $"{healItemAmount}";
+        maxHp = hp;
     }
 
 
@@ -329,9 +337,12 @@ public class PlayerController : MonoBehaviour
     #region HP Methods
         void Heal(int amount)
         {
-            // INSERT HEAL ANIMATION. PROBABLY JUST A FLASHING GREEN OVERLAY BUT WE'LL FIGURE IT OUT LATER
+            animator.SetBool("isHealing", true);    
+            Invoke(nameof(SetHealingToFalse), 0.1f);
             hp += amount;
+            if (hp > maxHp) hp = maxHp;
             healItemAmount--;
+            healTxt.text = $"{healItemAmount}";
         }
 
         // IMPORTANT
@@ -380,6 +391,10 @@ public class PlayerController : MonoBehaviour
     {
         animator.SetBool("isMeleeing", false);
     }
+    void SetHealingToFalse()
+    {
+        animator.SetBool("isHealing", false);
+    }
 
     void ShowDeathScreen()
     {
@@ -412,6 +427,13 @@ public class PlayerController : MonoBehaviour
             BossMovement boss = collision.gameObject.GetComponent<BossMovement>();
             if (boss.chaseActivated == true) Damage(hp);
             else Damage(10);
+        }
+
+        if (collision.gameObject.layer == 12)
+        {
+            healItemAmount = 2;
+            healTxt.text = $"{healItemAmount}";
+            Destroy(collision.gameObject);
         }
     }
 }
