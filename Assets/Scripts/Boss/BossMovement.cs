@@ -6,7 +6,7 @@ public class BossMovement : MonoBehaviour
     //Boss components
     [Header("Components")]
     private Rigidbody2D rb;
-    private ParticleSystem sweepParticle;
+    //private ParticleSystem sweepParticle;
     private CircleCollider2D sweepAttackCollider;
     private BoxCollider2D slamCollider;
     [SerializeField] BoxCollider2D mainCollider;
@@ -41,7 +41,7 @@ public class BossMovement : MonoBehaviour
     {
         //Get boss component
         rb = GetComponent<Rigidbody2D>();
-        sweepParticle = GetComponent<ParticleSystem>();
+        //sweepParticle = GetComponent<ParticleSystem>();
         sweepAttackCollider = GetComponent<CircleCollider2D>();
         slamCollider = GetComponent<BoxCollider2D>();
 
@@ -89,6 +89,7 @@ public class BossMovement : MonoBehaviour
     }
     private void Die()
     {
+        Debug.Log("sdf");
         Instantiate(dieParticle, transform.position, Quaternion.identity);
         GetComponent<SpriteRenderer>().enabled = false;
         playerScript.Win();
