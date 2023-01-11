@@ -11,14 +11,28 @@ public class PlayerController : MonoBehaviour
     public int healItemAmount;
     [SerializeField] private int healAmount;
 
-    public GameObject pauseMenu;
+    //Audio
+    [Space(10)]
+    [Header("Audio")]
     PlayerAudio playerAudioScript;
+    [SerializeField] private AudioSource musicSource;
+    [SerializeField] private AudioClip bossMusic;
+    [SerializeField] private AudioClip chaseMusic;
+
+    [Header("UI")]
+    //PauseMenu reffrence
+    public GameObject pauseMenu;
     public bool isPaused;
+    [SerializeField] GameObject bossHpBar;
 
     [Space(10)]
     public bool hasDied;
     public bool hasWon;
     [SerializeField] private GameObject dieParticle;
+
+    //Boss reffrence
+    [Space(10)]
+    [SerializeField] private GameObject boss;
 
     #region Movement Variables
     private float horizontal;
@@ -85,10 +99,13 @@ public class PlayerController : MonoBehaviour
     private bool kbActive;
 
     #endregion
+    RouteFollow bossRoute;
 
     private void Start()
     {
         playerAudioScript = GetComponent<PlayerAudio>();
+        //boss = GameObject.FindGameObjectWithTag("Boss");
+        bossRoute = boss.GetComponent<RouteFollow>();
     }
 
 
@@ -365,5 +382,29 @@ public class PlayerController : MonoBehaviour
         isPaused = true;
 
         Time.timeScale = 0;
+    }
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.gameObject.layer == 10)
+        {
+            musicSource.clip = chaseMusic;
+            musicSource.Play();
+            bossRoute.coroutineAllowed = true;
+        }
+        else if (collision.gameObject.layer == 11)
+        {
+            bossHpBar.SetActive(true);
+            musicSource.clip = bossMusic;
+            musicSource.Play();
+        }
+    }
+
+    private void OnCollisionEnter(Collision collision)
+    {
+        if (collision.gameObject.CompareTag("Boss"))
+        {
+            Damage(1);
+        }
     }
 }

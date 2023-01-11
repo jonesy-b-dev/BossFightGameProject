@@ -11,7 +11,6 @@ public class PlayerAudio : MonoBehaviour
     //Audio files
     [SerializeField] AudioClip rangedOne;
     [SerializeField] AudioClip rangedTwo;
-
     [SerializeField] AudioClip melee;
 
 

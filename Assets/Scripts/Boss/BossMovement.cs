@@ -1,11 +1,10 @@
 using System.Collections;
-using System.Collections.Generic;
-using Unity.VisualScripting;
 using UnityEngine;
 
 public class BossMovement : MonoBehaviour
 {
     //Boss components
+    [Header("Components")]
     private Rigidbody2D rb;
     private ParticleSystem sweepParticle;
     private CircleCollider2D sweepAttackCollider;
@@ -14,10 +13,12 @@ public class BossMovement : MonoBehaviour
     BossAudio bossAudioScript;
 
     //Player reffrences
+    [Header("Player Ref")]
     GameObject target;
     PlayerController playerScript;
     Transform playerTransform;
 
+    [Header("Boss stats")]
     public int bossHP = 1000;
     public bool chaseActivated = true;
     [SerializeField] int bossSpeed;
@@ -26,7 +27,7 @@ public class BossMovement : MonoBehaviour
 
     //Attack assets
     [Space]
-    [Space]
+    [Header("Boss attack assets")]
     [SerializeField] GameObject projectileRainProjectile;
     [SerializeField] GameObject projectileAttackProjectile;
     [SerializeField] GameObject dieParticle;
@@ -62,6 +63,7 @@ public class BossMovement : MonoBehaviour
             if (!inAttckstage)
             {
                 inAttckstage = true;
+                mainCollider.enabled = true;
                 StartCoroutine(StartAttackPhase());
             }
             else if (inAttckstage && canChase)
@@ -109,8 +111,9 @@ public class BossMovement : MonoBehaviour
         while (bossHP >= 0)
         {
             sweepAttackCollider.enabled = false;
+            mainCollider.enabled = true;
             int nextAttack = Random.Range(0, 5);
-            if (nextAttack != previousAttack)
+            if (nextAttack != previousAttack || nextAttack != 2)
             {
                 previousAttack = nextAttack;
                 switch (nextAttack)
@@ -144,7 +147,7 @@ public class BossMovement : MonoBehaviour
     {
         canSweepDamage = true;
         sweepAttackCollider.enabled = true;
-        sweepParticle.Play();
+        //sweepParticle.Play();
         //Damage is handeld in collision event
         yield return new WaitForSeconds(1);
     }
@@ -154,7 +157,6 @@ public class BossMovement : MonoBehaviour
         canChase = false;
         canSlamDamage = true;
         slamCollider.enabled = true;
-        mainCollider.enabled = true;
         rb.velocity = new Vector2(0, 0);
         rb.AddForce(new Vector2(0, 10), ForceMode2D.Impulse);
         rb.gravityScale = 1.5f;
@@ -175,14 +177,13 @@ public class BossMovement : MonoBehaviour
         }
     }
 
-        //Collision events
-        private void OnTriggerEnter2D(Collider2D collision)
+    //Collision events
+    private void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.gameObject.CompareTag("Player") && canSlamDamage && rb.velocity.y < 0)
         {
             playerScript.Damage(5);
             slamCollider.enabled = false;
-            mainCollider.enabled = false;
             canSlamDamage = false;
             canChase = true;
         }
@@ -196,8 +197,7 @@ public class BossMovement : MonoBehaviour
 
         else
         {
-            mainCollider.enabled = false;
             canChase = true;
         }
     }
-}   
+}

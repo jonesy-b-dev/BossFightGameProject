@@ -7,24 +7,15 @@ using UnityEngine.Rendering;
 public class RouteFollow : MonoBehaviour
 {
     [SerializeField] private Transform[] routes;
-    [SerializeField] private int routeToGo;
-    private float tParam;
+    [SerializeField] private int routeToGo = 0;
+    private float tParam = 0;
     private Vector2 bossPosition;
-    private float speed;
-    private bool coroutineAllowed;
-    
-    // Use this for initialization
-    void Start()
-    {
-        routeToGo = 0;
-        tParam = 0f;
-        speed = 0.4f;
-        coroutineAllowed = true;
-    }
-
+    private float speed = 0.4f;
+    public bool coroutineAllowed = false;
 
     private void Update()
     {
+        //Debug.Log(coroutineAllowed);
         if (coroutineAllowed)
         {
             StartCoroutine(GoByTheRoute(routeToGo));
@@ -56,6 +47,7 @@ public class RouteFollow : MonoBehaviour
         routeToGo += 1;
         if (routeToGo > routes.Length - 1)
         {
+            coroutineAllowed = false;
             GetComponent<BossMovement>().chaseActivated = false;
         }
 
