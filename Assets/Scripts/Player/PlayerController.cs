@@ -13,13 +13,15 @@ public class PlayerController : MonoBehaviour
 
     //Audio
     [Space(10)]
+    [Header("Audio")]
+    PlayerAudio playerAudioScript;
     [SerializeField] private AudioSource musicSource;
     [SerializeField] private AudioClip bossMusic;
     [SerializeField] private AudioClip chaseMusic;
 
+    [Header("UI")]
     //PauseMenu reffrence
     public GameObject pauseMenu;
-    PlayerAudio playerAudioScript;
     public bool isPaused;
     [SerializeField] GameObject bossHpBar;
 
@@ -395,6 +397,14 @@ public class PlayerController : MonoBehaviour
             bossHpBar.SetActive(true);
             musicSource.clip = bossMusic;
             musicSource.Play();
+        }
+    }
+
+    private void OnCollisionEnter(Collision collision)
+    {
+        if (collision.gameObject.CompareTag("Boss"))
+        {
+            Damage(1);
         }
     }
 }
