@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4630252198083319308}
   - component: {fileID: 2411228365093929556}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: HLanternLight
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -122,7 +122,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4125721434636584414}
   - component: {fileID: 3253610460041871308}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: Lantern
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -207,7 +207,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4426293641961486534}
   - component: {fileID: 8623941053336745298}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: LanternShadow
   m_TagString: Untagged
   m_Icon: {fileID: 0}
