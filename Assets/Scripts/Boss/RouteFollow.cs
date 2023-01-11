@@ -10,7 +10,7 @@ public class RouteFollow : MonoBehaviour
     [SerializeField] private int routeToGo = 0;
     private float tParam = 0;
     private Vector2 bossPosition;
-    private float speed = 0.4f;
+    private float speed = 0.35f;
     public bool coroutineAllowed = false;
 
     private void Update()
