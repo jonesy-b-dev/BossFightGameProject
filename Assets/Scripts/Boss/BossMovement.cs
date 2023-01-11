@@ -139,7 +139,7 @@ public class BossMovement : MonoBehaviour
             {
                 yield return new WaitForSeconds(0);
             }
-            yield return new WaitForSeconds(Random.Range(1, 2));
+            yield return new WaitForSeconds(Random.Range(3, 5));
         }
     }
 
@@ -172,7 +172,7 @@ public class BossMovement : MonoBehaviour
 
     private void ProjectileRainAttack()
     {
-        for (int i = 0; i < 20; i++)
+        for (int i = 0; i < 10; i++)
         {
             Instantiate(projectileRainProjectile);
         }

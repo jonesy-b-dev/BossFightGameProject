@@ -14,7 +14,7 @@ public class ProjectileRainProjectile : MonoBehaviour
         playerScript = target.GetComponent<PlayerController>();
         transform.position = new Vector2(Random.Range(166f, 188f), Random.Range(-20f, 7f));
 
-        Destroy(gameObject, 3);
+        Destroy(gameObject, 5);
     }
 
     private void OnTriggerEnter2D(Collider2D collision)

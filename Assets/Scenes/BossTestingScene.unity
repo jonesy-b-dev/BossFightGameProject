@@ -5439,7 +5439,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 1418806847
-  m_SortingLayer: 4
+  m_SortingLayer: 5
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: 1aead13ce5b51e34bbd3286846369ee3, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -10841,7 +10841,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 1418806847
-  m_SortingLayer: 4
+  m_SortingLayer: 5
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: 9acd61b5847d2204aa2160fc0befd7c2, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -10971,8 +10971,16 @@ MonoBehaviour:
   hp: 10
   healItemAmount: 0
   healAmount: 3
+  musicSource: {fileID: 0}
+  bossMusic: {fileID: 0}
+  chaseMusic: {fileID: 0}
   pauseMenu: {fileID: 1566310783}
   isPaused: 0
+  bossHpBar: {fileID: 0}
+  hasDied: 0
+  hasWon: 0
+  dieParticle: {fileID: 0}
+  boss: {fileID: 0}
   animator: {fileID: 581420882}
   speed: 7
   jumpPower: 11
@@ -10998,6 +11006,7 @@ MonoBehaviour:
     m_Bits: 64
   arrow: {fileID: 5894220584554852758, guid: 32f533403beed43459f89972b385b99a, type: 3}
   shootParticle: {fileID: 0}
+  meleeDamage: 0
   meleeCooldown: 0.5
   rangedCooldown: 4
 --- !u!50 &581420886
@@ -12053,7 +12062,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 1418806847
-  m_SortingLayer: 4
+  m_SortingLayer: 5
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: 9acd61b5847d2204aa2160fc0befd7c2, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -18242,6 +18251,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pc: {fileID: 581420885}
+  headerText: {fileID: 0}
+  retryText: {fileID: 0}
   selectionImg: {fileID: 179670844}
   button:
   - {fileID: 566193168}
@@ -18278,3 +18289,60 @@ Transform:
   m_Father: {fileID: 1004398580}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1001 &8389894448898173510
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 8389894449713093984, guid: 7378f4af362323140a3a0e0405ce1a11, type: 3}
+      propertyPath: m_Name
+      value: HealingPotion
+      objectReference: {fileID: 0}
+    - target: {fileID: 8389894449713093998, guid: 7378f4af362323140a3a0e0405ce1a11, type: 3}
+      propertyPath: m_RootOrder
+      value: 18
+      objectReference: {fileID: 0}
+    - target: {fileID: 8389894449713093998, guid: 7378f4af362323140a3a0e0405ce1a11, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -9.210589
+      objectReference: {fileID: 0}
+    - target: {fileID: 8389894449713093998, guid: 7378f4af362323140a3a0e0405ce1a11, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 6.1669216
+      objectReference: {fileID: 0}
+    - target: {fileID: 8389894449713093998, guid: 7378f4af362323140a3a0e0405ce1a11, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8389894449713093998, guid: 7378f4af362323140a3a0e0405ce1a11, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8389894449713093998, guid: 7378f4af362323140a3a0e0405ce1a11, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8389894449713093998, guid: 7378f4af362323140a3a0e0405ce1a11, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8389894449713093998, guid: 7378f4af362323140a3a0e0405ce1a11, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8389894449713093998, guid: 7378f4af362323140a3a0e0405ce1a11, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8389894449713093998, guid: 7378f4af362323140a3a0e0405ce1a11, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8389894449713093998, guid: 7378f4af362323140a3a0e0405ce1a11, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 7378f4af362323140a3a0e0405ce1a11, type: 3}
