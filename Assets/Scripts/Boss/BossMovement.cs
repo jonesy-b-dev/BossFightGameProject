@@ -21,7 +21,7 @@ public class BossMovement : MonoBehaviour
     [Header("Boss stats")]
     public int bossHP = 1000;
     public bool chaseActivated = true;
-    [SerializeField] int bossSpeed;
+    [SerializeField] float bossSpeed;
     Vector2 moveDirection;
     int previousAttack = 1;
 

@@ -274,7 +274,7 @@ public class PlayerController : MonoBehaviour
 
         if (enemy != null)
             {
-                if (enemy.gameObject.tag == "Boss")
+                if (enemy.gameObject.CompareTag("Boss"))
                 {
                     Debug.Log("Boss has been hit!");
                     BossMovement boss = enemy.gameObject.GetComponent<BossMovement>();
@@ -426,7 +426,7 @@ public class PlayerController : MonoBehaviour
         {
             BossMovement boss = collision.gameObject.GetComponent<BossMovement>();
             if (boss.chaseActivated == true) Damage(hp);
-            else Damage(10);
+            else Damage(5);
         }
 
         if (collision.gameObject.layer == 12)
