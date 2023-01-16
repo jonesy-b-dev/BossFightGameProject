@@ -63,6 +63,7 @@ public class BossMovement : MonoBehaviour
     {
         Vector2 pos = transform.position;
 
+        //Sprite flip
         if (pos.x > posTemp.x)
         {
             transform.localScale = new Vector3(1, 1, 1);
@@ -96,6 +97,14 @@ public class BossMovement : MonoBehaviour
         }
     }
 
+    private void FixedUpdate()
+    {
+        if (inAttckstage && canChase)
+        {
+            rb.velocity = new Vector2(moveDirection.x, moveDirection.y) * bossSpeed;
+        }
+    }
+
     public void Damage(int d)
     {
         bossHP -= d;
@@ -117,13 +126,7 @@ public class BossMovement : MonoBehaviour
         RaycastHit2D hit = Physics2D.Raycast(transform.position, -Vector2.up, 1);
     }
 
-    private void FixedUpdate()
-    {
-        if (inAttckstage && canChase)
-        {
-            rb.velocity = new Vector2(moveDirection.x, moveDirection.y) * bossSpeed;
-        }
-    }
+
 
     IEnumerator StartAttackPhase()
     {
@@ -161,7 +164,7 @@ public class BossMovement : MonoBehaviour
         }
     }
 
-    //Attacks
+    #region Attacks
     private IEnumerator SweepAttack()
     {
         canSweepDamage = true;
@@ -195,6 +198,7 @@ public class BossMovement : MonoBehaviour
             Instantiate(projectileRainProjectile);
         }
     }
+    #endregion
 
     //Collision events
     private void OnTriggerEnter2D(Collider2D collision)
