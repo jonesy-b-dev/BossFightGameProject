@@ -37,6 +37,8 @@ public class BossMovement : MonoBehaviour
     private bool canSweepDamage;
     private bool canChase = true;
 
+    Vector2 posTemp;
+
     private void Awake()
     {
         //Get boss component
@@ -53,9 +55,25 @@ public class BossMovement : MonoBehaviour
         target = GameObject.FindGameObjectWithTag("Player");
         playerScript = target.GetComponent<PlayerController>();
         playerTransform = target.transform;
+
+        posTemp = transform.position;
+
     }
     void Update()
     {
+        Vector2 pos = transform.position;
+
+        if (pos.x > posTemp.x)
+        {
+            transform.localScale = new Vector3(1, 1, 1);
+            posTemp = pos;
+        }
+        else if (pos.x < posTemp.x)
+        {
+            transform.localScale = new Vector3(-1, 1, 1);
+            posTemp = pos;
+        }
+
         //Debug.Log(rb.velocity.y);
         if (!chaseActivated)
         {
