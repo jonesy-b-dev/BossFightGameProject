@@ -349,6 +349,7 @@ public class PlayerController : MonoBehaviour
         // Can be executed through any code, subtracts d amount of damage from the player. Death function will be added later.
         public void Damage(int d)
         {
+            playerAudioScript.Damage();
             animator.SetBool("isHurting", true);
             Invoke(nameof(SetHurtingToFalse), 0.1f);
 

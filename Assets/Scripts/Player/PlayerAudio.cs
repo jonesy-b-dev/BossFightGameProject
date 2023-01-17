@@ -12,6 +12,7 @@ public class PlayerAudio : MonoBehaviour
     [SerializeField] AudioClip rangedOne;
     [SerializeField] AudioClip rangedTwo;
     [SerializeField] AudioClip melee;
+    [SerializeField] AudioClip damage;
 
 
     private int random;
@@ -30,6 +31,14 @@ public class PlayerAudio : MonoBehaviour
     {
         audioSource.volume = 0.6f;
         audioSource.clip = melee;
+        audioSource.Play();
+        audioSource.volume = 1;
+    }
+
+    public void Damage()
+    {
+        audioSource.volume = 0.6f;
+        audioSource.clip = damage;
         audioSource.Play();
         audioSource.volume = 1;
     }
