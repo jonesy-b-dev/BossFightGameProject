@@ -1,4 +1,5 @@
 using System.Collections;
+using UnityEditor.Animations;
 using UnityEngine;
 
 public class BossMovement : MonoBehaviour
@@ -9,6 +10,7 @@ public class BossMovement : MonoBehaviour
     //private ParticleSystem sweepParticle;
     private CircleCollider2D sweepAttackCollider;
     private BoxCollider2D slamCollider;
+    [SerializeField] Animator animator;
     [SerializeField] BoxCollider2D mainCollider;
     BossAudio bossAudioScript;
 
@@ -132,6 +134,10 @@ public class BossMovement : MonoBehaviour
     {
         while (bossHP >= 0)
         {
+            //Set anim variables 
+            //animator.SetBool("CanMelee", false);
+
+
             sweepAttackCollider.enabled = false;
             mainCollider.enabled = true;
             int nextAttack = Random.Range(0, 5);
@@ -169,6 +175,7 @@ public class BossMovement : MonoBehaviour
     {
         canSweepDamage = true;
         sweepAttackCollider.enabled = true;
+        animator.SetBool("CanMelee", true);
         //sweepParticle.Play();
         //Damage is handeld in collision event
         yield return new WaitForSeconds(1);
