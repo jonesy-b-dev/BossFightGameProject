@@ -1015,21 +1015,18 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 'Controls Arcade:
+  m_text: 'Controls PC:
 
-    Left Stick - Move
+    WASD - Move
 
-    Red - Melee
+    Space - Jump
 
-    Blue - Ranged
+    L Shift - Heal
 
-    White
-    - Heal
+    L
+    mouse - Melee
 
-    Green - Continue
-
-
-'
+    R mouse - Ranged'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 0df51e80ce057b548a3f83a30a8afb5f, type: 2}
   m_sharedMaterial: {fileID: 6255180232659901154, guid: 0df51e80ce057b548a3f83a30a8afb5f, type: 2}
