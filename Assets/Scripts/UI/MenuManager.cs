@@ -74,6 +74,16 @@ public class MenuManager : MonoBehaviour
                             } break;
                         case 1:
                             {
+                                SceneManager.LoadScene("Options");
+                            }
+                            break;
+                        case 2:
+                            {
+                                SceneManager.LoadScene("Credits");
+                            }
+                            break;
+                        case 3:
+                            {
                                 Application.Quit();
                             } break;
                     }
