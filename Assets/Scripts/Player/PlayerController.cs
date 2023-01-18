@@ -419,7 +419,7 @@ public class PlayerController : MonoBehaviour
             musicSource.clip = bossMusic;
             musicSource.Play();
 
-            boss.transform.position = new Vector2(transform.position.x, transform.position.y + 5);
+            //boss.transform.position = new Vector2(transform.position.x, transform.position.y + 5);
             boss.GetComponent<BossMovement>().chaseActivated = false;
         }
 
