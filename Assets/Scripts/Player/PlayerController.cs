@@ -198,6 +198,7 @@ public class PlayerController : MonoBehaviour
         #endregion
     }
 
+    bool canDoOnceTemp = true;
     private void FixedUpdate()
     {
         #region Horizontal Movement
@@ -224,9 +225,22 @@ public class PlayerController : MonoBehaviour
         {
             player.velocity = new Vector2(player.velocity.x, Mathf.Clamp(player.velocity.y, -wallSlideSpeed, float.MaxValue));
             wallSliding = true;
+            
+            if (canDoOnceTemp)
+            {
+                Debug.Log("start wj");
+                canDoOnceTemp = false;
+                playerAudioScript.WallSlide();
+            }
         }
         else
         {
+            if (canDoOnceTemp == false)
+            {
+                Debug.Log("Stop Wall sliding");
+                playerAudioScript.StopWallSlide();
+                canDoOnceTemp = true;
+            }
             wallSliding = false;
         }
 
