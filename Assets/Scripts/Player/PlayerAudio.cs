@@ -14,19 +14,28 @@ public class PlayerAudio : MonoBehaviour
     [SerializeField] AudioClip rangedTwo;
     [SerializeField] AudioClip melee;
     [SerializeField] AudioClip damage;
-    [SerializeField] AudioClip wallSlide;
+    [SerializeField] AudioClip[] wallSlide;
 
 
     private int random;
+    private int previous = 0;
 
     public void Ranged()
     {
-        random = Random.Range(1, 2);
+        random = Random.Range(1, 3);
+
         if (random == 1)
         {
             audioSource.volume = 1;
             audioSource.loop = false;
             audioSource.clip = rangedOne;
+            audioSource.Play();
+        }
+        else
+        {
+            audioSource.volume = 1;
+            audioSource.loop = false;
+            audioSource.clip = rangedTwo;
             audioSource.Play();
         }
     }
@@ -49,7 +58,30 @@ public class PlayerAudio : MonoBehaviour
     
     public void WallSlide()
     {
-        audioSource.clip = wallSlide;
+        random = Random.Range(0, 3);
+        if (random != previous)
+        {
+            previous = random;
+            switch (random)
+            {
+                case 0:
+                    audioSource.clip = wallSlide[0];
+                    break;
+                case 1:
+                    audioSource.clip = wallSlide[1];
+                    break;
+                case 2:
+                    audioSource.clip = wallSlide[2];
+                    break;
+                default:
+                    break;
+            }
+        }
+        else
+        {
+            WallSlide();
+        }
+        
         audioSource.volume = 0.6f;
         audioSource.loop = true;
         audioSource.volume = 0.5f;
@@ -58,7 +90,7 @@ public class PlayerAudio : MonoBehaviour
 
     public void StopWallSlide()
     {
-        if (audioSource.clip == wallSlide)
+        if (audioSource.clip == wallSlide[0] || audioSource.clip == wallSlide[1] || audioSource.clip == wallSlide[2])
         {
             audioSource.Stop();
         }
