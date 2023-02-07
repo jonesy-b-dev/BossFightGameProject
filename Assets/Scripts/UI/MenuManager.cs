@@ -46,7 +46,8 @@ public class MenuManager : MonoBehaviour
                 headerText.text = "You Won!";
                 retryText.text = "Play Again";
             }
-        } catch
+        } 
+        catch
         {
             var a = 1;
         }
@@ -69,23 +70,17 @@ public class MenuManager : MonoBehaviour
                     switch (selection)
                     {
                         case 0:
-                            {
-                                SceneManager.LoadScene("Level");
-                            } break;
+                            SceneManager.LoadScene("Level");
+                            break;
                         case 1:
-                            {
-                                SceneManager.LoadScene("Options");
-                            }
+                            SceneManager.LoadScene("Options");
                             break;
                         case 2:
-                            {
-                                SceneManager.LoadScene("Credits");
-                            }
+                            SceneManager.LoadScene("Credits");
                             break;
                         case 3:
-                            {
-                                Application.Quit();
-                            } break;
+                            Application.Quit();
+                           break;
                     }
                 } break;
             case "pause":
