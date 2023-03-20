@@ -121,10 +121,11 @@ public class BossMovement : MonoBehaviour
         GetComponent<SpriteRenderer>().enabled = false;
         playerScript.Win();
     }
-    private void BodySlamAudio()
-    {
-        RaycastHit2D hit = Physics2D.Raycast(transform.position, -Vector2.up, 1);
-    }
+    
+    //private void BodySlamAudio()
+    //{
+    //    RaycastHit2D hit = Physics2D.Raycast(transform.position, -Vector2.up, 1);
+    //}
 
 
 
